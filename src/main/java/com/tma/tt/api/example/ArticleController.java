@@ -1,6 +1,7 @@
 package com.tma.tt.api.example;
 import java.util.List;
 
+import com.tma.tt.api.article.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,6 @@
 package com.tma.tt.api.example;
+import com.tma.tt.api.article.Article;
+
 import java.util.List;
 public interface IArticleDAO {
     List<Article> getAllArticles();

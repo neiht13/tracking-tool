@@ -21,10 +21,12 @@
 		<katharsis.version>3.0.2</katharsis.version>
 	</properties>
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -46,11 +48,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-		<dependency>
-   			 <groupId>org.springframework</groupId>
-    		 <artifactId>spring-jdbc</artifactId>
-		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
@@ -58,12 +56,14 @@
 			<scope>compile</scope>
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>2.6</version>
 			<scope>compile</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
@@ -71,6 +71,7 @@
 			<scope>compile</scope>
 			<optional>true</optional>
 		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

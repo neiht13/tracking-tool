@@ -47,6 +47,47 @@ public class Question implements Serializable, Validatable {
 	private QuestionStatus status;
     
     @Enumerated(EnumType.STRING)
-	@Column(name = "type")
+	@Column(name = "question_type")
 	private QuestionType type;
+
+	public int getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
+	}
+
+	public Area getArea() {
+		return area;
+	}
+
+	public void setArea(Area area) {
+		this.area = area;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public QuestionStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(QuestionStatus status) {
+		this.status = status;
+	}
+
+	public QuestionType getType() {
+		return type;
+	}
+
+	public void setType(QuestionType type) {
+		this.type = type;
+	}
+    
 }

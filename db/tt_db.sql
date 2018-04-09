@@ -17,32 +17,6 @@ USE `tt_db`;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-/*
-  Table structure for table `articles`
-  For example, please don't remove it
-*/
-
-DROP TABLE IF EXISTS `articles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `articles` (
-  `article_id` int(11) NOT NULL,
-  `title` varchar(45) DEFAULT NULL,
-  `category` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`article_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `articles`
---
-
-LOCK TABLES `articles` WRITE;
-/*!40000 ALTER TABLE `articles` DISABLE KEYS */;
-INSERT INTO `articles` VALUES (1,'java','programming');
-/*!40000 ALTER TABLE `articles` ENABLE KEYS */;
-UNLOCK TABLES;
-
 --
 -- Table structure for table `subject`
 --
@@ -106,8 +80,8 @@ CREATE TABLE `question` (
   `question_id` int(11) NOT NULL,
   `area_id` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `status` enum('Y','N') NOT NULL,
-  `type` enum('S','M','F') NOT NULL,
+  `status` enum('ACTIVE','INACTIVE') NOT NULL,
+  `type` enum('SINGLE_CHOICE','MULTI_CHOICE','FILL_IN') NOT NULL,
   PRIMARY KEY (`question_id`),
   KEY `fk_area_idx` (`area_id`),
   CONSTRAINT `fk_area` FOREIGN KEY (`area_id`) REFERENCES `area` (`area_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -120,7 +94,7 @@ CREATE TABLE `question` (
 
 LOCK TABLES `question` WRITE;
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
-INSERT INTO `question` VALUES (1,1,'Which are the modules of core container?','N','S'),(2,1,'What types of Dependency injection does spring supports?','N','S'),(3,1,'What is prototype scope?','N','S');
+INSERT INTO `question` VALUES (1,1,'Which are the modules of core container?','ACTIVE','SINGLE_CHOICE'),(2,1,'What types of Dependency injection does spring supports?','ACTIVE','MULTI_CHOICE'),(3,1,'What is prototype scope?','INACTIVE','FILL_IN');
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 UNLOCK TABLES;
 

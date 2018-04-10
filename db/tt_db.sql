@@ -136,10 +136,10 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
-  `userName` varchar(45) NOT NULL,
+  `user_name` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `role` varchar(45) NOT NULL,
-  `fullName` varchar(45) NOT NULL,
+  `full_name` varchar(45) NOT NULL,
   `status` enum('ACTIVE','INACTIVE') NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

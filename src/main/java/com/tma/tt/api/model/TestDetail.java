@@ -16,8 +16,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.tma.tt.api.common.Validatable;
 
 import io.katharsis.resource.annotations.JsonApiId;
+import io.katharsis.resource.annotations.JsonApiRelation;
 import io.katharsis.resource.annotations.JsonApiResource;
-import io.katharsis.resource.annotations.JsonApiToOne;
 
 @JsonApiResource(type = "test-details")
 @Entity
@@ -34,14 +34,14 @@ public class TestDetail implements Serializable, Validatable {
     private String id;
     
     @JsonProperty("test")
-    @JsonApiToOne
+	@JsonApiRelation
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "test_id", referencedColumnName = "test_id", insertable = false, updatable = false)
     @MapsId("testId")
     private Test test;
     
     @JsonProperty("question")
-    @JsonApiToOne
+	@JsonApiRelation
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id", referencedColumnName = "question_id", insertable = false, updatable = false)
     @MapsId("questionId")

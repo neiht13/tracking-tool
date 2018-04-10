@@ -29,7 +29,7 @@ public class Area implements Serializable, Validatable {
 	@Column(name="area_id")
     private int areaId;
 
-	@JsonApiRelation(lookUp=LookupIncludeBehavior.AUTOMATICALLY_WHEN_NULL,serialize=SerializeType.ONLY_ID)
+	@JsonApiRelation
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id", referencedColumnName = "subject_id")
     private Subject subject;

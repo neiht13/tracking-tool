@@ -140,7 +140,7 @@ CREATE TABLE `user` (
   `password` varchar(45) NOT NULL,
   `role` varchar(45) NOT NULL,
   `fullName` varchar(45) NOT NULL,
-  `status` enum('A','I') NOT NULL,
+  `status` enum('ACTIVE','INACTIVE') NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -151,7 +151,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'btthuan','123','admin','Bui Thanh Th uan','A'),(2,'nvluong','123','admin','Nguyen Van Luong','A'),(3,'nvtri','123','admin','Nguyen Van Tri','A'),(4,'hvtrung','123','admin','Hoang Van Trung','A');
+INSERT INTO `user` VALUES (1,'btthuan','123','admin','Bui Thanh Th uan','ACTIVE'),(2,'nvluong','123','admin','Nguyen Van Luong','ACTIVE'),(3,'nvtri','123','admin','Nguyen Van Tri','ACTIVE'),(4,'hvtrung','123','admin','Hoang Van Trung','INACTIVE');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -7,8 +7,8 @@ import javax.persistence.*;
 import com.tma.tt.api.common.Validatable;
 
 import io.katharsis.resource.annotations.JsonApiId;
+import io.katharsis.resource.annotations.JsonApiRelation;
 import io.katharsis.resource.annotations.JsonApiResource;
-import io.katharsis.resource.annotations.JsonApiToOne;
 
 @JsonApiResource(type = "user-mentors")
 @Entity
@@ -22,17 +22,17 @@ public class UserMentor implements Serializable, Validatable {
 	@Column(name="user_mentor_id")
     private int userMentorId;
 
-	@JsonApiToOne
+	@JsonApiRelation
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User user;
 
-	@JsonApiToOne
+	@JsonApiRelation
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "mentor_id", referencedColumnName = "user_id")
 	private User mentor;
 
-	@JsonApiToOne
+	@JsonApiRelation
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "area_id", referencedColumnName = "area_id")
 	private Area area;

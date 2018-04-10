@@ -8,8 +8,8 @@ import javax.persistence.*;
 import com.tma.tt.api.common.Validatable;
 
 import io.katharsis.resource.annotations.JsonApiId;
+import io.katharsis.resource.annotations.JsonApiRelation;
 import io.katharsis.resource.annotations.JsonApiResource;
-import io.katharsis.resource.annotations.JsonApiToOne;
 
 @JsonApiResource(type = "user-feedbacks")
 @Entity
@@ -23,7 +23,7 @@ public class UserFeedback implements Serializable, Validatable {
 	@Column(name="user_feedback_id")
     private int userFeedbackId;
 
-	@JsonApiToOne
+	@JsonApiRelation
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User user;
@@ -32,7 +32,7 @@ public class UserFeedback implements Serializable, Validatable {
 	@Column(name = "description", nullable = false, insertable = true, updatable = true, length = 45)
 	private String description;
 
-	@JsonApiToOne
+	@JsonApiRelation
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "feeder", referencedColumnName = "user_id")
 	private User feeder;

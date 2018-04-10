@@ -7,8 +7,8 @@ import javax.persistence.*;
 import com.tma.tt.api.common.Validatable;
 
 import io.katharsis.resource.annotations.JsonApiId;
+import io.katharsis.resource.annotations.JsonApiRelation;
 import io.katharsis.resource.annotations.JsonApiResource;
-import io.katharsis.resource.annotations.JsonApiToOne;
 
 @JsonApiResource(type = "question-choices")
 @Entity
@@ -22,7 +22,7 @@ public class QuestionChoice implements Serializable, Validatable {
 	@Column(name="choice_id")
     private int choiceId;
 
-    @JsonApiToOne
+    @JsonApiRelation
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id", referencedColumnName = "question_id")
     private Question question;

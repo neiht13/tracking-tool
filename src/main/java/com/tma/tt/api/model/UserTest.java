@@ -8,8 +8,8 @@ import javax.persistence.*;
 import com.tma.tt.api.common.Validatable;
 
 import io.katharsis.resource.annotations.JsonApiId;
+import io.katharsis.resource.annotations.JsonApiRelation;
 import io.katharsis.resource.annotations.JsonApiResource;
-import io.katharsis.resource.annotations.JsonApiToOne;
 
 @JsonApiResource(type = "user-tests")
 @Entity
@@ -22,8 +22,8 @@ public class UserTest implements Serializable, Validatable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="user_test_id")
     private int userTestId;
-    
-    @JsonApiToOne
+
+    @JsonApiRelation
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
@@ -32,13 +32,13 @@ public class UserTest implements Serializable, Validatable {
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "test_id", referencedColumnName = "test_id")
 //    private Test test;
-    
-    @JsonApiToOne
+
+    @JsonApiRelation
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id", referencedColumnName = "question_id")
     private Question question;
-    
-    @JsonApiToOne
+
+    @JsonApiRelation
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "choice_id", referencedColumnName = "choice_id")
     private QuestionChoice questionChoice;

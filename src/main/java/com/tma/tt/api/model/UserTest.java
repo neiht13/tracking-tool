@@ -1,16 +1,9 @@
 package com.tma.tt.api.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.tma.tt.api.common.Validatable;
 
@@ -35,10 +28,10 @@ public class UserTest implements Serializable, Validatable {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
     
-    @JsonApiToOne
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "test_id", referencedColumnName = "test_id")
-    private Test test;
+//    @JsonApiToOne
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "test_id", referencedColumnName = "test_id")
+//    private Test test;
     
     @JsonApiToOne
     @ManyToOne(fetch = FetchType.LAZY)
@@ -49,4 +42,68 @@ public class UserTest implements Serializable, Validatable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "choice_id", referencedColumnName = "choice_id")
     private QuestionChoice questionChoice;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "corrected")
+    private YesNoFlag corrected;
+
+    @Basic
+    @Column(name = "test_date", nullable = false)
+    private Date testDate;
+
+    public int getUserTestId() {
+        return userTestId;
+    }
+
+    public void setUserTestId(int userTestId) {
+        this.userTestId = userTestId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+//    public Test getTest() {
+//        return test;
+//    }
+//
+//    public void setTest(Test test) {
+//        this.test = test;
+//    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public QuestionChoice getQuestionChoice() {
+        return questionChoice;
+    }
+
+    public void setQuestionChoice(QuestionChoice questionChoice) {
+        this.questionChoice = questionChoice;
+    }
+
+    public YesNoFlag getCorrected() {
+        return corrected;
+    }
+
+    public void setCorrected(YesNoFlag corrected) {
+        this.corrected = corrected;
+    }
+
+    public Date getTestDate() {
+        return testDate;
+    }
+
+    public void setTestDate(Date testDate) {
+        this.testDate = testDate;
+    }
 }

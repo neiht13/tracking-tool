@@ -9,9 +9,11 @@ import io.katharsis.resource.list.DefaultResourceList;
 import io.katharsis.resource.list.ResourceList;
 import io.katharsis.resource.meta.DefaultPagedMetaInformation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class QuestionChoiceRepositoryImpl extends ResourceRepositoryBase<QuestionChoice, Integer> implements QuestionChoiceRepository {
 
     @Autowired

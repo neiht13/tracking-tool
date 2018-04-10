@@ -1,6 +1,7 @@
 package com.tma.tt.api.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -30,5 +31,44 @@ public class Test implements Serializable, Validatable {
     @Basic
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 45)
     private String description;
-    
+
+    @Basic
+    @Column(name = "level", nullable = false, insertable = true, updatable = true, length = 11)
+    private int level;
+
+    @Basic
+    @Column(name = "create_date", nullable = true, insertable = true, updatable = true)
+    private Date createDate;
+
+    public int getTestId() {
+        return testId;
+    }
+
+    public void setTestId(int testId) {
+        this.testId = testId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 }

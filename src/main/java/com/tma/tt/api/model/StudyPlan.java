@@ -30,13 +30,37 @@ public class StudyPlan implements Serializable, Validatable {
 	@Column(name="study_plan_id")
     private int studyPlanId;
     
-    @JsonApiToOne
+/*    @JsonApiToOne
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private User user;
+    private User user;*/
     
     @JsonApiToOne
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "area_id", referencedColumnName = "area_id")
     private Area area;
+
+    public int getStudyPlanId() {
+        return studyPlanId;
+    }
+
+    public void setStudyPlanId(int studyPlanId) {
+        this.studyPlanId = studyPlanId;
+    }
+/*
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }*/
+
+    public Area getArea() {
+        return area;
+    }
+
+    public void setArea(Area area) {
+        this.area = area;
+    }
 }

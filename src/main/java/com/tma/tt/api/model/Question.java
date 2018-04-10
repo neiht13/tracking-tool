@@ -32,8 +32,8 @@ public class Question implements Serializable, Validatable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="question_id")
     private int questionId;
-    
-    @JsonApiToOne
+
+	@JsonApiToOne
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "area_id", referencedColumnName = "area_id")
     private Area area;

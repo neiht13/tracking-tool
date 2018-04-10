@@ -81,7 +81,7 @@ CREATE TABLE `question` (
   `area_id` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
   `status` enum('ACTIVE','INACTIVE') NOT NULL,
-  `type` enum('SINGLE_CHOICE','MULTI_CHOICE','FILL_IN') NOT NULL,
+  `question_type` enum('SINGLE_CHOICE','MULTI_CHOICE','FILL_IN') NOT NULL,
   PRIMARY KEY (`question_id`),
   KEY `fk_area_idx` (`area_id`),
   CONSTRAINT `fk_area` FOREIGN KEY (`area_id`) REFERENCES `area` (`area_id`) ON DELETE NO ACTION ON UPDATE NO ACTION

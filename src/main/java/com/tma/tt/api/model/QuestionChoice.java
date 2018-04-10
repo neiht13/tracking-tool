@@ -2,16 +2,7 @@ package com.tma.tt.api.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.tma.tt.api.common.Validatable;
 
@@ -30,13 +21,50 @@ public class QuestionChoice implements Serializable, Validatable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="choice_id")
     private int choiceId;
-    
-    @Basic
-    @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
-    private String description;
-    
+
     @JsonApiToOne
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id", referencedColumnName = "question_id")
     private Question question;
+    
+    @Basic
+    @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
+    private String description;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "corrected")
+    private YesNoFlag corrected;
+
+    public int getChoiceId() {
+        return choiceId;
+    }
+
+    public void setChoiceId(int choiceId) {
+        this.choiceId = choiceId;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public YesNoFlag getCorrected() {
+        return corrected;
+    }
+
+    public void setCorrected(YesNoFlag corrected) {
+        this.corrected = corrected;
+    }
+
 }

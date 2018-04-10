@@ -1,0 +1,35 @@
+package com.tma.tt.api.repository;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.tma.tt.api.jpa.QuestionJpaRepository;
+import com.tma.tt.api.model.Question;
+
+import io.katharsis.queryspec.QuerySpec;
+import io.katharsis.repository.ResourceRepositoryBase;
+import io.katharsis.resource.links.DefaultPagedLinksInformation;
+import io.katharsis.resource.list.DefaultResourceList;
+import io.katharsis.resource.list.ResourceList;
+import io.katharsis.resource.meta.DefaultPagedMetaInformation;
+
+@Component
+public class QuestionRepositoryImpl extends ResourceRepositoryBase<Question, Integer> implements QuestionRepository {
+
+    @Autowired
+    private QuestionJpaRepository jpaRepository;
+
+    public QuestionRepositoryImpl() {
+        super(Question.class);
+    }
+
+	@Override
+	public ResourceList<Question> findAll(QuerySpec querySpec) {
+		ResourceList<Question> list = new DefaultResourceList<Question>(new DefaultPagedMetaInformation(), new DefaultPagedLinksInformation());
+        List<Question> questions = jpaRepository.findAll();
+        querySpec.apply(questions, list);
+        return list;
+	}
+}

@@ -15,9 +15,7 @@ import javax.persistence.Table;
 
 import com.tma.tt.api.common.Validatable;
 
-import io.katharsis.resource.annotations.JsonApiId;
-import io.katharsis.resource.annotations.JsonApiResource;
-import io.katharsis.resource.annotations.JsonApiToOne;
+import io.katharsis.resource.annotations.*;
 
 @JsonApiResource(type = "areas")
 @Entity
@@ -31,7 +29,7 @@ public class Area implements Serializable, Validatable {
 	@Column(name="area_id")
     private int areaId;
 
-	@JsonApiToOne
+	@JsonApiRelation(lookUp=LookupIncludeBehavior.AUTOMATICALLY_WHEN_NULL,serialize=SerializeType.ONLY_ID)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id", referencedColumnName = "subject_id")
     private Subject subject;

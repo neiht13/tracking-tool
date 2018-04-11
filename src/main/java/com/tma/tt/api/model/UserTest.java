@@ -27,11 +27,11 @@ public class UserTest implements Serializable, Validatable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
-    
-//    @JsonApiToOne
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "test_id", referencedColumnName = "test_id")
-//    private Test test;
+
+    @JsonApiRelation
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "test_id", referencedColumnName = "test_id")
+    private Test test;
 
     @JsonApiRelation
     @ManyToOne(fetch = FetchType.LAZY)
@@ -67,13 +67,13 @@ public class UserTest implements Serializable, Validatable {
         this.user = user;
     }
 
-//    public Test getTest() {
-//        return test;
-//    }
-//
-//    public void setTest(Test test) {
-//        this.test = test;
-//    }
+    public Test getTest() {
+        return test;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
+    }
 
     public Question getQuestion() {
         return question;

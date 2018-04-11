@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import com.tma.tt.api.common.Validatable;
 
 import io.katharsis.resource.annotations.JsonApiId;
+import io.katharsis.resource.annotations.JsonApiRelation;
 import io.katharsis.resource.annotations.JsonApiResource;
 import io.katharsis.resource.annotations.JsonApiToOne;
 
@@ -29,13 +30,13 @@ public class StudyPlan implements Serializable, Validatable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="study_plan_id")
     private int studyPlanId;
-    
-/*    @JsonApiToOne
+
+    @JsonApiRelation
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private User user;*/
-    
-    @JsonApiToOne
+    private User user;
+
+    @JsonApiRelation
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "area_id", referencedColumnName = "area_id")
     private Area area;
@@ -47,14 +48,14 @@ public class StudyPlan implements Serializable, Validatable {
     public void setStudyPlanId(int studyPlanId) {
         this.studyPlanId = studyPlanId;
     }
-/*
+
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
-    }*/
+    }
 
     public Area getArea() {
         return area;

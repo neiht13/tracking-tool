@@ -32,4 +32,14 @@ public class AreaRepositoryImpl extends ResourceRepositoryBase<Area, Integer> im
         querySpec.apply(areas, list);
         return list;
 	}
+
+	@Override
+    public Area save(Area obj){
+        return jpaRepository.save(obj);
+    }
+
+    @Override
+    public void delete(Integer id){
+        Area obj = jpaRepository.getOne(id);
+        this.jpaRepository.delete(obj);    }
 }

@@ -2,15 +2,7 @@ package com.tma.tt.api.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.tma.tt.api.common.Validatable;
 
@@ -41,6 +33,10 @@ public class StudyPlan implements Serializable, Validatable {
     @JoinColumn(name = "area_id", referencedColumnName = "area_id")
     private Area area;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "completed")
+    private YesNoFlag completed;
+
     public int getStudyPlanId() {
         return studyPlanId;
     }
@@ -64,4 +60,14 @@ public class StudyPlan implements Serializable, Validatable {
     public void setArea(Area area) {
         this.area = area;
     }
+
+
+    public YesNoFlag getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(YesNoFlag completed) {
+        this.completed = completed;
+    }
+
 }

@@ -30,4 +30,15 @@ public class StudyPlanRepositoryImpl extends ResourceRepositoryBase<StudyPlan, I
         querySpec.apply(studyPlans, list);
         return list;
 	}
+
+    @Override
+    public StudyPlan save(StudyPlan obj){
+        return jpaRepository.save(obj);
+    }
+
+    @Override
+    public void delete(Integer id){
+        StudyPlan obj = jpaRepository.getOne(id);
+        this.jpaRepository.delete(obj);
+    }
 }

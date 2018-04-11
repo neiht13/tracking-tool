@@ -32,4 +32,16 @@ public class QuestionRepositoryImpl extends ResourceRepositoryBase<Question, Int
         querySpec.apply(questions, list);
         return list;
 	}
+
+
+    @Override
+    public Question save(Question obj){
+        return jpaRepository.save(obj);
+    }
+
+    @Override
+    public void delete(Integer id){
+        Question obj = jpaRepository.getOne(id);
+        this.jpaRepository.delete(obj);
+    }
 }

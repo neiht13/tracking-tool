@@ -32,4 +32,15 @@ public class UserRepositoryImpl extends ResourceRepositoryBase<User, Integer> im
         querySpec.apply(users, list);
         return list;
 	}
+
+    @Override
+    public User save(User obj){
+        return jpaRepository.save(obj);
+    }
+
+    @Override
+    public void delete(Integer id){
+        User obj = jpaRepository.getOne(id);
+        jpaRepository.delete(obj);
+    }
 }

@@ -30,4 +30,15 @@ public class UserFeedbackRepositoryImpl extends ResourceRepositoryBase<UserFeedb
         querySpec.apply(userFeedbacks, list);
         return list;
 	}
+
+    @Override
+    public UserFeedback save(UserFeedback obj){
+        return jpaRepository.save(obj);
+    }
+
+    @Override
+    public void delete(Integer id){
+        UserFeedback obj = jpaRepository.getOne(id);
+        jpaRepository.delete(obj);
+    }
 }

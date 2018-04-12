@@ -32,4 +32,15 @@ public class UserMentorRepositoryImpl extends ResourceRepositoryBase<UserMentor,
         querySpec.apply(userMentors, list);
         return list;
 	}
+
+    @Override
+    public UserMentor save(UserMentor obj){
+        return jpaRepository.save(obj);
+    }
+
+    @Override
+    public void delete(Integer id){
+        UserMentor obj = jpaRepository.getOne(id);
+        jpaRepository.delete(obj);
+    }
 }

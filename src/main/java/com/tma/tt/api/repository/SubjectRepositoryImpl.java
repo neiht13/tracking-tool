@@ -32,4 +32,15 @@ public class SubjectRepositoryImpl extends ResourceRepositoryBase<Subject, Integ
         querySpec.apply(subjects, list);
         return list;
 	}
+
+    @Override
+    public Subject save(Subject obj) {
+        return jpaRepository.save(obj);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        Subject obj = jpaRepository.getOne(id);
+        this.jpaRepository.delete(obj);
+    }
 }

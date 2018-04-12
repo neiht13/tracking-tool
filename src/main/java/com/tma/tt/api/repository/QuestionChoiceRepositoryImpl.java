@@ -30,4 +30,14 @@ public class QuestionChoiceRepositoryImpl extends ResourceRepositoryBase<Questio
         querySpec.apply(questionChoices, list);
         return list;
     }
+
+    @Override
+    public QuestionChoice save(QuestionChoice obj){
+        return jpaRepository.save(obj);
+    }
+
+    @Override
+    public void delete(Integer id){
+        QuestionChoice obj = jpaRepository.getOne(id);
+        this.jpaRepository.delete(obj);    }
 }

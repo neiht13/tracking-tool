@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS `area`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `area` (
-  `area_id` int(11) NOT NULL,
+  `area_id` int(11) NOT NULL AUTO_INCREMENT,
   `subject_id` int(11) NOT NULL,
   `description` varchar(45) NOT NULL,
   PRIMARY KEY (`area_id`),
@@ -77,7 +77,7 @@ DROP TABLE IF EXISTS `question`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `question` (
-  `question_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL AUTO_INCREMENT,
   `area_id` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
   `status` enum('ACTIVE','INACTIVE') NOT NULL,
@@ -106,7 +106,7 @@ DROP TABLE IF EXISTS `question_choice`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `question_choice` (
-  `choice_id` int(11) NOT NULL,
+  `choice_id` int(11) NOT NULL AUTO_INCREMENT,
   `question_id` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
   `corrected` enum('Y','N') NOT NULL,
@@ -135,7 +135,7 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `role` varchar(45) NOT NULL,
@@ -163,7 +163,7 @@ DROP TABLE IF EXISTS `test`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `test` (
-  `test_id` int(11) NOT NULL,
+  `test_id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(45) NOT NULL,
   `level` int(11) NOT NULL,
   `create_date` datetime DEFAULT NULL,
@@ -189,7 +189,7 @@ DROP TABLE IF EXISTS `study_plan`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `study_plan` (
-  `study_plan_id` int(11) NOT NULL,
+  `study_plan_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `area_id` int(11) NOT NULL,
   `completed` enum('Y','N') NOT NULL,
@@ -246,7 +246,7 @@ DROP TABLE IF EXISTS `user_test`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_test` (
-  `user_test_id` int(11) NOT NULL,
+  `user_test_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `test_id` int(11) NOT NULL,
   `question_id` int(11) NOT NULL,
@@ -283,7 +283,7 @@ DROP TABLE IF EXISTS `user_mentor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_mentor` (
-  `user_mentor_id` int(11) NOT NULL,
+  `user_mentor_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `mentor_id` int(11) NOT NULL,
   `area_id` int(11) NOT NULL,
@@ -315,7 +315,7 @@ DROP TABLE IF EXISTS `user_feedback`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_feedback` (
-  `user_feedback_id` int(11) NOT NULL,
+  `user_feedback_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `description` varchar(45) DEFAULT NULL,
   `feedback_date` datetime DEFAULT NULL,

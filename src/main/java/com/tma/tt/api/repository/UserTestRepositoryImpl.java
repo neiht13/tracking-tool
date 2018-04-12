@@ -30,4 +30,15 @@ public class UserTestRepositoryImpl extends ResourceRepositoryBase<UserTest, Int
         querySpec.apply(userTests, list);
         return list;
 	}
+
+    @Override
+    public UserTest save(UserTest obj){
+        return jpaRepository.save(obj);
+    }
+
+    @Override
+    public void delete(Integer id){
+        UserTest obj = jpaRepository.getOne(id);
+        jpaRepository.delete(obj);
+    }
 }

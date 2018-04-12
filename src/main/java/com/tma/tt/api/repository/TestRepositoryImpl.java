@@ -30,4 +30,15 @@ public class TestRepositoryImpl extends ResourceRepositoryBase<Test, Integer> im
         querySpec.apply(tests, list);
         return list;
 	}
+
+    @Override
+    public Test save(Test obj){
+        return jpaRepository.save(obj);
+    }
+
+    @Override
+    public void delete(Integer id){
+        Test obj = jpaRepository.getOne(id);
+        jpaRepository.delete(obj);
+    }
 }

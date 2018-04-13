@@ -56,7 +56,7 @@ public class TestDetail implements Serializable, Validatable {
 	}
 
 	public String getId() {
-		return id;
+		return testDetailId.getCompositeId();
 	}
 
 	public void setId(String id) {

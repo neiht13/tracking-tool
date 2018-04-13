@@ -1,6 +1,5 @@
 package com.tma.tt.api.repository;
 
-import com.tma.tt.api.common.CommonJsonApiUtils;
 import com.tma.tt.api.jpa.TestDetailJpaRepository;
 import com.tma.tt.api.model.TestDetail;
 import com.tma.tt.api.model.TestDetailId;

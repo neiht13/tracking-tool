@@ -10,15 +10,17 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SubjectRepositoryImplTest {
@@ -65,4 +67,28 @@ public class SubjectRepositoryImplTest {
 
     }
 
+    @Test
+    public void testSave(){
+        Subject subject1 = new Subject();
+        subject1.setSubjectId(1);
+        subject1.setDescription("Subject 1");
+
+        repository.save(subject1);
+        ArgumentCaptor<Subject> argumentCaptor = ArgumentCaptor.forClass(Subject.class);
+        verify(jpaRepository).save(argumentCaptor.capture());
+        Assert.assertEquals(subject1, argumentCaptor.getValue());
+    }
+
+    @Test
+    public void testDelete(){
+        Subject subject1 = new Subject();
+        subject1.setSubjectId(1);
+        subject1.setDescription("Subject 1");
+        when(jpaRepository.getOne(1)).thenReturn(subject1);
+        repository.delete(1);
+
+        ArgumentCaptor<Subject> argumentCaptor = ArgumentCaptor.forClass(Subject.class);
+        verify(jpaRepository).delete(argumentCaptor.capture());
+        Assert.assertEquals(subject1, argumentCaptor.getValue());
+    }
 }

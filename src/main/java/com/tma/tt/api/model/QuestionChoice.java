@@ -35,6 +35,10 @@ public class QuestionChoice implements Serializable, Validatable {
     @Column(name = "corrected")
     private YesNoFlag corrected;
 
+    @Basic
+    @Column(name = "fill_in", nullable = true, insertable = true, updatable = true, length = 255)
+    private String fill_in;
+
     public int getChoiceId() {
         return choiceId;
     }
@@ -67,4 +71,11 @@ public class QuestionChoice implements Serializable, Validatable {
         this.corrected = corrected;
     }
 
+    public String getFill_in() {
+        return fill_in;
+    }
+
+    public void setFill_in(String fill_in) {
+        this.fill_in = fill_in;
+    }
 }

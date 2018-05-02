@@ -54,14 +54,12 @@ public class UserTestRepositoryImplTest {
         QuerySpec spec = new QuerySpec(UserTest.class);
         List<UserTest> userTests = new ArrayList<>();
         UserTest userTest1 = new UserTest();
-        userTest1.setCorrected(YesNoFlag.Y);
         userTest1.setTest(test1);
         userTest1.setUser(user1);
         userTests.add(userTest1);
 
         UserTest userTest2 = new UserTest();
         userTest2.setUserTestId(2);
-        userTest2.setCorrected(YesNoFlag.N);
         userTests.add(userTest2);
 
 
@@ -94,7 +92,6 @@ public class UserTestRepositoryImplTest {
         user1.setUserName("nvluong 1");
 
         UserTest userTest1 = new UserTest();
-        userTest1.setCorrected(YesNoFlag.Y);
         userTest1.setTest(test1);
         userTest1.setUser(user1);
 
@@ -117,7 +114,6 @@ public class UserTestRepositoryImplTest {
         user1.setUserName("nvluong 1");
 
         UserTest userTest1 = new UserTest();
-        userTest1.setCorrected(YesNoFlag.Y);
         userTest1.setTest(test1);
         userTest1.setUser(user1);
 

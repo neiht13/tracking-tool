@@ -33,22 +33,12 @@ public class UserTest implements Serializable, Validatable {
     @JoinColumn(name = "test_id", referencedColumnName = "test_id")
     private Test test;
 
-    @JsonApiRelation
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "question_id", referencedColumnName = "question_id")
-    private Question question;
-
-    @JsonApiRelation
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "choice_id", referencedColumnName = "choice_id")
-    private QuestionChoice questionChoice;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "corrected")
-    private YesNoFlag corrected;
+    @Basic
+    @Column(name = "score", nullable = true, insertable = true, updatable = true)
+    private int score;
 
     @Basic
-    @Column(name = "test_date", nullable = false)
+    @Column(name = "test_date", nullable = true, insertable = true, updatable = true)
     private Date testDate;
 
     public int getUserTestId() {
@@ -75,28 +65,12 @@ public class UserTest implements Serializable, Validatable {
         this.test = test;
     }
 
-    public Question getQuestion() {
-        return question;
+    public int getScore() {
+        return score;
     }
 
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
-
-    public QuestionChoice getQuestionChoice() {
-        return questionChoice;
-    }
-
-    public void setQuestionChoice(QuestionChoice questionChoice) {
-        this.questionChoice = questionChoice;
-    }
-
-    public YesNoFlag getCorrected() {
-        return corrected;
-    }
-
-    public void setCorrected(YesNoFlag corrected) {
-        this.corrected = corrected;
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public Date getTestDate() {

@@ -110,6 +110,7 @@ CREATE TABLE `question_choice` (
   `question_id` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
   `corrected` enum('Y','N') NOT NULL,
+  `fill_in` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`choice_id`),
   KEY `fk_question_idx` (`question_id`),
   CONSTRAINT `fk_question` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -249,20 +250,14 @@ CREATE TABLE `user_test` (
   `user_test_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `test_id` int(11) NOT NULL,
-  `question_id` int(11) NOT NULL,
-  `choice_id` int(11) NOT NULL,
-  `corrected` enum('Y','N') NOT NULL,
-  `test_date` datetime NOT NULL,
+  `score` int(11) DEFAULT NULL,
+  `test_date` datetime DEFAULT NULL,
   PRIMARY KEY (`user_test_id`),
-  KEY `fk_question_idx` (`question_id`),
-  KEY `fk_choice_idx` (`choice_id`),
   KEY `fk_user` (`user_id`),
   KEY `fk_test_id_idx` (`test_id`),
   CONSTRAINT `fk_test_id` FOREIGN KEY (`test_id`) REFERENCES `test` (`test_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_choice` FOREIGN KEY (`choice_id`) REFERENCES `question_choice` (`choice_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_question` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,8 +266,42 @@ CREATE TABLE `user_test` (
 
 LOCK TABLES `user_test` WRITE;
 /*!40000 ALTER TABLE `user_test` DISABLE KEYS */;
-INSERT INTO `user_test` VALUES (1,1,1,1,1,'Y','2018-04-06 00:00:00'),(2,1,1,2,1,'Y','2018-04-06 00:00:00'),(3,1,1,3,1,'Y','2018-04-06 00:00:00');
+INSERT INTO `user_test` VALUES (1,1,1,0,'2018-04-06 00:00:00'),(2,1,2,0,'2018-04-06 00:00:00'),(3,1,3,0,'2018-04-06 00:00:00');
 /*!40000 ALTER TABLE `user_test` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_test_result`
+--
+
+DROP TABLE IF EXISTS `user_test_result`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_test_result` (
+  `user_test_result_id` int(11) NOT NULL,
+  `user_test_id` int(11) DEFAULT NULL,
+  `question_id` int(11) NOT NULL,
+  `choice_id` int(11) NOT NULL,
+  `fill_in` varchar(255) DEFAULT NULL,
+  `corrected` enum('Y','N') NOT NULL,
+  PRIMARY KEY (`user_test_result_id`),
+  KEY `fk_user_test_idx` (`user_test_id`),
+  KEY `fk_user_question_idx` (`question_id`),
+  KEY `fk_user_choice_idx` (`choice_id`),
+  CONSTRAINT `fk_user_choice` FOREIGN KEY (`choice_id`) REFERENCES `question_choice` (`choice_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_question` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_test` FOREIGN KEY (`user_test_id`) REFERENCES `user_test` (`user_test_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_test_result`
+--
+
+LOCK TABLES `user_test_result` WRITE;
+/*!40000 ALTER TABLE `user_test_result` DISABLE KEYS */;
+INSERT INTO `user_test_result` VALUES (1,1,2,5,NULL,'Y'),(2,1,2,6,NULL,'N'),(3,1,3,9,NULL,'Y');
+/*!40000 ALTER TABLE `user_test_result` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

@@ -367,6 +367,39 @@ INSERT INTO `user_feedback` VALUES (1,1,'Update later','2018-04-06 00:00:00',4);
 /*!40000 ALTER TABLE `user_feedback` ENABLE KEYS */;
 UNLOCK TABLES;
 
+DROP TABLE IF EXISTS `schedule`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schedule` (
+  `schedule_id` int(11) NOT NULL AUTO_INCREMENT,
+  `week_id` varchar(20) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `mon_m` enum('Y','N') DEFAULT 'N',
+  `mon_a` enum('Y','N') DEFAULT 'N',
+  `tue_m` enum('Y','N') DEFAULT 'N',
+  `tue_a` enum('Y','N') DEFAULT 'N',
+  `wed_m` enum('Y','N') DEFAULT 'N',
+  `wed_a` enum('Y','N') DEFAULT 'N',
+  `thu_m` enum('Y','N') DEFAULT 'N',
+  `thu_a` enum('Y','N') DEFAULT 'N',
+  `fri_m` enum('Y','N') DEFAULT 'N',
+  `fri_a` enum('Y','N') DEFAULT 'N',
+  PRIMARY KEY (`schedule_id`),
+  KEY `fk_schedule_user_idx` (`user_id`),
+  CONSTRAINT `fk_schedule_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+
+--
+-- Dumping data for table `user_feedback`
+--
+
+LOCK TABLES `schedule` WRITE;
+/*!40000 ALTER TABLE `schedule` DISABLE KEYS */;
+INSERT INTO `tt_db`.`schedule` (`schedule_id`, `week_id`, `user_id`, `mon_m`, `mon_a`, `tue_m`, `tue_a`, `wed_m`, `wed_a`, `thu_m`, `thu_a`, `fri_m`, `fri_a`) VALUES ('1', 'Week-1-2018', '1', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N');
+/*!40000 ALTER TABLE `schedule` ENABLE KEYS */;
+UNLOCK TABLES;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

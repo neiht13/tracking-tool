@@ -123,7 +123,7 @@ CREATE TABLE `question_choice` (
 
 LOCK TABLES `question_choice` WRITE;
 /*!40000 ALTER TABLE `question_choice` DISABLE KEYS */;
-INSERT INTO `question_choice` VALUES (1,1,'Beans, Core, Context, SpEL','Y'),(2,1,'Core, Context, ORM, Web','N'),(3,1,'Core, Context, Aspects, Test','N'),(4,1,'Bean, Core, Context, Test','N'),(5,2,'Constructor based, Setter based','Y'),(6,2,'Constructor based, Setter based, Getter Based','N'),(7,2,'Setter based, Getter based, Properties based','N'),(8,2,'Constructor based, Setter based, Properties based','N'),(9,3,'This scopes a single bean definition to have any number of object instances.','Y'),(10,3,'This scopes the bean definition to a single instance per HTTP Request.','N'),(11,3,'This scopes the bean definition to a single instance per HTTP Session.','N'),(12,3,'This scopes the bean definition to a single instance per HTTP Application/ Global session.','N');
+INSERT INTO `question_choice` VALUES (1,1,'Beans, Core, Context, SpEL','Y', NULL ),(2,1,'Core, Context, ORM, Web','N', NULL ),(3,1,'Core, Context, Aspects, Test','N', NULL ),(4,1,'Bean, Core, Context, Test','N', NULL ),(5,2,'Constructor based, Setter based','Y', NULL ),(6,2,'Constructor based, Setter based, Getter Based','N', NULL ),(7,2,'Setter based, Getter based, Properties based','N', NULL ),(8,2,'Constructor based, Setter based, Properties based','N', NULL ),(9,3,'This scopes a single bean definition to have any number of object instances.','Y', NULL ),(10,3,'This scopes the bean definition to a single instance per HTTP Request.','N', NULL ),(11,3,'This scopes the bean definition to a single instance per HTTP Session.','N', NULL ),(12,3,'This scopes the bean definition to a single instance per HTTP Application/ Global session.','N', NULL );
 /*!40000 ALTER TABLE `question_choice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -396,7 +396,7 @@ CREATE TABLE `schedule` (
 
 LOCK TABLES `schedule` WRITE;
 /*!40000 ALTER TABLE `schedule` DISABLE KEYS */;
-INSERT INTO `tt_db`.`schedule` (`schedule_id`, `week_id`, `user_id`, `mon_m`, `mon_a`, `tue_m`, `tue_a`, `wed_m`, `wed_a`, `thu_m`, `thu_a`, `fri_m`, `fri_a`) VALUES ('1', 'Week-1-2018', '1', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N');
+INSERT INTO `tt_db`.`schedule` (`schedule_id`, `week_id`, `user_id`, `mon_m`, `mon_a`, `tue_m`, `tue_a`, `wed_m`, `wed_a`, `thu_m`, `thu_a`, `fri_m`, `fri_a`) VALUES ('1', '18-2018', '1', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N');
 /*!40000 ALTER TABLE `schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 

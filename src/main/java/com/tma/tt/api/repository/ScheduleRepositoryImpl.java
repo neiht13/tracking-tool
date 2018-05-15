@@ -33,6 +33,7 @@ public class ScheduleRepositoryImpl extends ResourceRepositoryBase<Schedule, Int
 
 	@Override
     public Schedule save(Schedule obj){
+        obj.setWeekId();
         return jpaRepository.save(obj);
     }
 

@@ -7,6 +7,8 @@ import io.katharsis.resource.annotations.JsonApiResource;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 
 @JsonApiResource(type = "schedules")
 @Entity
@@ -172,4 +174,14 @@ public class Schedule implements Serializable, Validatable {
 	public void setFriA(YesNoFlag friA) {
 		this.friA = friA;
 	}
+
+	public void setWeekId() {
+		if(weekId == null || weekId == "") {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(new Date());
+			Integer wkId = cal.get(Calendar.WEEK_OF_YEAR);
+			setWeekId(wkId.toString() + '_' + cal.get(Calendar.YEAR));
+		}
+	}
+
 }

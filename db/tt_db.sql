@@ -389,6 +389,16 @@ CREATE TABLE `schedule` (
   CONSTRAINT `fk_schedule_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `schedule`
+--
+
+LOCK TABLES `schedule` WRITE;
+/*!40000 ALTER TABLE `schedule` DISABLE KEYS */;
+INSERT INTO `tt_db`.`schedule` (`schedule_id`, `week_id`, `user_id`, `mon_m`, `mon_a`, `tue_m`, `tue_a`, `wed_m`, `wed_a`, `thu_m`, `thu_a`, `fri_m`, `fri_a`) VALUES ('1', '18-2018', '1', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N');
+/*!40000 ALTER TABLE `schedule` ENABLE KEYS */;
+UNLOCK TABLES;
+
 
 --
 -- Table structure for table `request`
@@ -440,13 +450,27 @@ UNLOCK TABLES;
 
 
 --
--- Dumping data for table `user_feedback`
+-- Table structure for table `task`
 --
 
-LOCK TABLES `schedule` WRITE;
-/*!40000 ALTER TABLE `schedule` DISABLE KEYS */;
-INSERT INTO `tt_db`.`schedule` (`schedule_id`, `week_id`, `user_id`, `mon_m`, `mon_a`, `tue_m`, `tue_a`, `wed_m`, `wed_a`, `thu_m`, `thu_a`, `fri_m`, `fri_a`) VALUES ('1', '18-2018', '1', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N');
-/*!40000 ALTER TABLE `schedule` ENABLE KEYS */;
+DROP TABLE IF EXISTS `task`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `task` (
+  `task_id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(45) NOT NULL,
+  PRIMARY KEY (`task_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `task`
+--
+
+LOCK TABLES `task` WRITE;
+/*!40000 ALTER TABLE `task` DISABLE KEYS */;
+INSERT INTO `task` VALUES (1,'task1');
+/*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

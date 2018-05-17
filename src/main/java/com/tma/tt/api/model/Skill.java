@@ -20,8 +20,12 @@ public class Skill implements Serializable, Validatable {
     private int skillId;
     
     @Basic
-    @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 45)
-    private String description;
+    @Column(name = "name", nullable = false, insertable = true, updatable = true, length = 45)
+    private String name;
+
+	@Basic
+	@Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
+	private String description;
 
 	public int getSkillId() {
 		return skillId;
@@ -31,7 +35,15 @@ public class Skill implements Serializable, Validatable {
 		this.skillId = skillId;
 	}
 
-	public String getDescription() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
 		return description;
 	}
 

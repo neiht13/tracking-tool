@@ -2,6 +2,7 @@ package com.tma.tt.api.model;
 
 import com.tma.tt.api.common.Validatable;
 import io.katharsis.resource.annotations.JsonApiId;
+import io.katharsis.resource.annotations.JsonApiRelation;
 import io.katharsis.resource.annotations.JsonApiResource;
 
 import javax.persistence.*;
@@ -18,9 +19,18 @@ public class DeliveryCenter implements Serializable, Validatable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="delivery_center_id")
     private int deliveryCenterId;
-    
+
+	@JsonApiRelation
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "delivery_group_id", referencedColumnName = "delivery_group_id")
+	private DeliveryGroup deliveryGroup;
+
+	@Basic
+	@Column(name = "name", nullable = false, insertable = true, updatable = true, length = 45)
+	private String name;
+
     @Basic
-    @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 45)
+    @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
     private String description;
 
 	public int getDeliveryCenterId() {
@@ -29,6 +39,22 @@ public class DeliveryCenter implements Serializable, Validatable {
 
 	public void setDeliveryCenterId(int deliveryCenterId) {
 		this.deliveryCenterId = deliveryCenterId;
+	}
+
+	public DeliveryGroup getDeliveryGroup() {
+		return deliveryGroup;
+	}
+
+	public void setDeliveryGroup(DeliveryGroup deliveryGroup) {
+		this.deliveryGroup = deliveryGroup;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {

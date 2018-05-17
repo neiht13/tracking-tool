@@ -457,7 +457,8 @@ DROP TABLE IF EXISTS `delivery_group`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `delivery_group` (
   `delivery_group_id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `description` varchar(255) NOT NULL,
   PRIMARY KEY (`delivery_group_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -468,7 +469,7 @@ CREATE TABLE `delivery_group` (
 
 LOCK TABLES `delivery_group` WRITE;
 /*!40000 ALTER TABLE `delivery_group` DISABLE KEYS */;
-INSERT INTO `delivery_group` VALUES (1,'delivery_group 1');
+INSERT INTO `delivery_group` VALUES (1, 'DG1','DG1');
 /*!40000 ALTER TABLE `delivery_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -480,10 +481,14 @@ DROP TABLE IF EXISTS `delivery_center`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `delivery_center` (
-  `delivery_center_id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(45) NOT NULL,
-  PRIMARY KEY (`delivery_center_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `delivery_center_id` int(11) NOT NULL,
+  `delivery_group_id` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  PRIMARY KEY (`delivery_center_id`),
+  KEY `delivery_group_id_idx` (`delivery_group_id`),
+  CONSTRAINT `fk_delivery_group` FOREIGN KEY (`delivery_group_id`) REFERENCES `delivery_group` (`delivery_group_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -492,7 +497,7 @@ CREATE TABLE `delivery_center` (
 
 LOCK TABLES `delivery_center` WRITE;
 /*!40000 ALTER TABLE `delivery_center` DISABLE KEYS */;
-INSERT INTO `delivery_center` VALUES (1,'delivery_center 1');
+INSERT INTO `delivery_center` VALUES (1,1,'DC3','DC3');
 /*!40000 ALTER TABLE `delivery_center` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -504,10 +509,14 @@ DROP TABLE IF EXISTS `project`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `project` (
-  `project_id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(45) NOT NULL,
-  PRIMARY KEY (`project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `project_id` int(11) NOT NULL,
+  `delivery_center_id` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  PRIMARY KEY (`project_id`),
+  KEY `fk_delivery_center_idx` (`delivery_center_id`),
+  CONSTRAINT `fk_delivery_center` FOREIGN KEY (`delivery_center_id`) REFERENCES `delivery_center` (`delivery_center_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -516,7 +525,7 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
-INSERT INTO `project` VALUES (1,'project 1');
+INSERT INTO `project` VALUES (1,1,'GBST','GBST');
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -529,7 +538,8 @@ DROP TABLE IF EXISTS `skill`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `skill` (
   `skill_id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `description` varchar(255) NOT NULL,
   PRIMARY KEY (`skill_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -540,7 +550,7 @@ CREATE TABLE `skill` (
 
 LOCK TABLES `skill` WRITE;
 /*!40000 ALTER TABLE `skill` DISABLE KEYS */;
-INSERT INTO `skill` VALUES (1,'skill 1');
+INSERT INTO `skill` VALUES (1,'Java','Java 1');
 /*!40000 ALTER TABLE `skill` ENABLE KEYS */;
 UNLOCK TABLES;
 

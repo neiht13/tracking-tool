@@ -481,7 +481,7 @@ DROP TABLE IF EXISTS `delivery_center`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `delivery_center` (
-  `delivery_center_id` int(11) NOT NULL,
+  `delivery_center_id` int(11) NOT NULL AUTO_INCREMENT,
   `delivery_group_id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -509,7 +509,7 @@ DROP TABLE IF EXISTS `project`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `project` (
-  `project_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL AUTO_INCREMENT,
   `delivery_center_id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -562,7 +562,7 @@ DROP TABLE IF EXISTS `request`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `request` (
-  `request_id` int(11) NOT NULL,
+  `request_id` int(11) NOT NULL AUTO_INCREMENT,
   `project_id` int(11) NOT NULL,
   `skill_id` int(11) NOT NULL,
   `description` varchar(45) NOT NULL,

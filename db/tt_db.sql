@@ -565,24 +565,17 @@ CREATE TABLE `request` (
   `request_id` int(11) NOT NULL AUTO_INCREMENT,
   `project_id` int(11) NOT NULL,
   `skill_id` int(11) NOT NULL,
+  `request_date` date DEFAULT NULL,
+  `due_date` date DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
   `description` varchar(45) NOT NULL,
   PRIMARY KEY (`request_id`),
   KEY `fk_project_idx` (`project_id`),
   KEY `fk_skill_idx` (`skill_id`),
   CONSTRAINT `fk_project` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_skill` FOREIGN KEY (`skill_id`) REFERENCES `skill` (`skill_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `request`
---
-
-LOCK TABLES `request` WRITE;
-/*!40000 ALTER TABLE `request` DISABLE KEYS */;
-INSERT INTO `request` VALUES (1,1,1,'Request1');
-/*!40000 ALTER TABLE `request` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -7,6 +7,7 @@ import io.katharsis.resource.annotations.JsonApiResource;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @JsonApiResource(type = "requests")
 @Entity
@@ -29,9 +30,21 @@ public class Request implements Serializable, Validatable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "skill_id", referencedColumnName = "skill_id")
 	private Skill skill;
-    
+
+	@Basic
+	@Column(name = "request_date", nullable = false, insertable = true, updatable = true)
+	private Date requestDate;
+
+	@Basic
+	@Column(name = "due_date", nullable = false, insertable = true, updatable = true)
+	private Date dueDate;
+
+	@Basic
+	@Column(name = "quantity", nullable = false, insertable = true, updatable = true)
+	private int quantity;
+
     @Basic
-    @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 45)
+    @Column(name = "description", nullable = false, insertable = true, updatable = true)
     private String description;
 
 	public int getRequestId() {
@@ -65,5 +78,29 @@ public class Request implements Serializable, Validatable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-    
+
+	public Date getRequestDate() {
+		return requestDate;
+	}
+
+	public void setRequestDate(Date requestDate) {
+		this.requestDate = requestDate;
+	}
+
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 }

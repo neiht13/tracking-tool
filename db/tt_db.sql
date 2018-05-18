@@ -37,7 +37,7 @@ CREATE TABLE `subject` (
 
 LOCK TABLES `subject` WRITE;
 /*!40000 ALTER TABLE `subject` DISABLE KEYS */;
-INSERT INTO `subject` VALUES (1,'Spring');
+INSERT INTO `subject` VALUES (1,'Spring'),(2,'DOTNET');
 /*!40000 ALTER TABLE `subject` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +65,7 @@ CREATE TABLE `area` (
 
 LOCK TABLES `area` WRITE;
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
-INSERT INTO `area` VALUES (1,1,'Spring Core'),(2,1,'Spring MVC'),(3,1,'Spring Boot');
+INSERT INTO `area` VALUES (1,1,'Spring Core'),(2,1,'Spring MVC'),(3,1,'Spring Boot'),(4,2,'ASP'),(5,2,'C Sharp');
 /*!40000 ALTER TABLE `area` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +152,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'btthuan','123','admin','Bui Thanh Th uan','ACTIVE'),(2,'nvluong','123','admin','Nguyen Van Luong','ACTIVE'),(3,'nvtri','123','admin','Nguyen Van Tri','ACTIVE'),(4,'hvtrung','123','admin','Hoang Van Trung','INACTIVE');
+INSERT INTO `user` VALUES (1,'btthuan','123','mentor','Bui Thanh Thuan','ACTIVE'),(2,'nvluong','123','user','Nguyen Van Luong','ACTIVE'),(3,'nvtri','123','user','Nguyen Van Tri','ACTIVE'),(4,'hvtrung','123','mentor','Hoang Van Trung','INACTIVE');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,7 +178,7 @@ CREATE TABLE `test` (
 
 LOCK TABLES `test` WRITE;
 /*!40000 ALTER TABLE `test` DISABLE KEYS */;
-INSERT INTO `test` VALUES (1,'Spring framework',1,'2018-04-06 00:00:00');
+INSERT INTO `test` VALUES (1,'Spring framework',1,'2018-04-06 00:00:00'),(2,'Spring boot',1,'2018-04-07 00:00:00'),(3,'Spring MVC',1,'2018-04-08 00:00:00');
 /*!40000 ALTER TABLE `test` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,7 +208,7 @@ CREATE TABLE `study_plan` (
 
 LOCK TABLES `study_plan` WRITE;
 /*!40000 ALTER TABLE `study_plan` DISABLE KEYS */;
-INSERT INTO `study_plan` VALUES (1,1,1,'N'),(2,1,2,'N'),(3,1,3,'N');
+INSERT INTO `study_plan` VALUES (1,1,2,'N'),(2,2,1,'Y'),(3,1,3,'N');
 /*!40000 ALTER TABLE `study_plan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -235,7 +235,7 @@ CREATE TABLE `test_detail` (
 
 LOCK TABLES `test_detail` WRITE;
 /*!40000 ALTER TABLE `test_detail` DISABLE KEYS */;
-INSERT INTO `test_detail` VALUES (1,1),(1,2),(1,3);
+INSERT INTO `test_detail` VALUES (2,1),(1,2),(2,2),(1,3);
 /*!40000 ALTER TABLE `test_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,7 +266,7 @@ CREATE TABLE `user_test` (
 
 LOCK TABLES `user_test` WRITE;
 /*!40000 ALTER TABLE `user_test` DISABLE KEYS */;
-INSERT INTO `user_test` VALUES (1,1,1,0,'2018-04-06 00:00:00'),(2,1,2,0,'2018-04-06 00:00:00'),(3,1,3,0,'2018-04-06 00:00:00');
+INSERT INTO `user_test` VALUES (1,1,2,0,'2018-04-11 00:00:00'),(2,1,3,0,NULL),(3,2,1,2,'2018-04-13 00:00:00'),(4,2,2,0,NULL);
 /*!40000 ALTER TABLE `user_test` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -395,7 +395,7 @@ CREATE TABLE `schedule` (
 
 LOCK TABLES `schedule` WRITE;
 /*!40000 ALTER TABLE `schedule` DISABLE KEYS */;
-INSERT INTO `tt_db`.`schedule` (`schedule_id`, `week_id`, `user_id`, `mon_m`, `mon_a`, `tue_m`, `tue_a`, `wed_m`, `wed_a`, `thu_m`, `thu_a`, `fri_m`, `fri_a`) VALUES ('1', '18-2018', '1', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N');
+INSERT INTO `schedule` VALUES (1,'18-2018',2,'Y','Y','N','N','N','N','N','N','N','N'),(2,'18-2018',1,'N','N','Y','Y','N','N','N','N','N','N');
 /*!40000 ALTER TABLE `schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 

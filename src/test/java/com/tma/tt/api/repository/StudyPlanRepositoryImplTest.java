@@ -38,12 +38,20 @@ public class StudyPlanRepositoryImplTest {
 
     @Test
     public void testFindAll() {
+        Role role1 = new Role();
+        role1.setRoleId(1);
+        role1.setRoleName("User");
+
+        Role role2 = new Role();
+        role2.setRoleId(2);
+        role2.setRoleName("Mentor");
+
         User user1 = new User();
         user1.setUserId(1);
         user1.setUserName("nva");
         user1.setPassword("abc");
         user1.setFullName("Nguyen Van A");
-        user1.setRole("admin");
+        user1.setRole(role1);
         user1.setStatus(UserStatus.ACTIVE);
 
         User user2 = new User();
@@ -51,7 +59,7 @@ public class StudyPlanRepositoryImplTest {
         user2.setUserName("nvb");
         user2.setPassword("abc");
         user2.setFullName("Nguyen Van B");
-        user2.setRole("admin");
+        user2.setRole(role2);
         user2.setStatus(UserStatus.INACTIVE);
 
         Subject subject1 = new Subject();
@@ -98,12 +106,16 @@ public class StudyPlanRepositoryImplTest {
 
     @Test
     public void testSave(){
+        Role role1 = new Role();
+        role1.setRoleId(1);
+        role1.setRoleName("User");
+
         User user1 = new User();
         user1.setUserId(1);
         user1.setUserName("nva");
         user1.setPassword("abc");
         user1.setFullName("Nguyen Van A");
-        user1.setRole("admin");
+        user1.setRole(role1);
         user1.setStatus(UserStatus.ACTIVE);
 
         Subject subject1 = new Subject();
@@ -129,12 +141,16 @@ public class StudyPlanRepositoryImplTest {
 
     @Test
     public void testDelete(){
+        Role role1 = new Role();
+        role1.setRoleId(1);
+        role1.setRoleName("User");
+
         User user1 = new User();
         user1.setUserId(1);
         user1.setUserName("nva");
         user1.setPassword("abc");
         user1.setFullName("Nguyen Van A");
-        user1.setRole("admin");
+        user1.setRole(role1);
         user1.setStatus(UserStatus.ACTIVE);
 
         Subject subject1 = new Subject();

@@ -139,7 +139,7 @@ CREATE TABLE `user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
-  `role` varchar(45) NOT NULL,
+  `role_id` int(11) NOT NULL,
   `full_name` varchar(45) NOT NULL,
   `status` enum('ACTIVE','INACTIVE') NOT NULL,
   PRIMARY KEY (`user_id`)
@@ -152,7 +152,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'btthuan','123','mentor','Bui Thanh Thuan','ACTIVE'),(2,'nvluong','123','user','Nguyen Van Luong','ACTIVE'),(3,'nvtri','123','user','Nguyen Van Tri','ACTIVE'),(4,'hvtrung','123','mentor','Hoang Van Trung','INACTIVE');
+INSERT INTO `user` VALUES (1,'btthuan','123',2,'Bui Thanh Thuan','ACTIVE'),(2,'nvluong','123',1,'Nguyen Van Luong','ACTIVE'),(3,'nvtri','123',1,'Nguyen Van Tri','ACTIVE'),(4,'hvtrung','123',2,'Hoang Van Trung','INACTIVE');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -576,6 +576,30 @@ CREATE TABLE `request` (
   CONSTRAINT `fk_skill` FOREIGN KEY (`skill_id`) REFERENCES `skill` (`skill_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `role` (
+  `role_id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role`
+--
+
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,'User'),(2,'Mentor'),(3,'Manager'),(4,'RAC');
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

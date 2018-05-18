@@ -7,6 +7,7 @@ import javax.persistence.*;
 import com.tma.tt.api.common.Validatable;
 
 import io.katharsis.resource.annotations.JsonApiId;
+import io.katharsis.resource.annotations.JsonApiRelation;
 import io.katharsis.resource.annotations.JsonApiResource;
 
 @JsonApiResource(type = "users")
@@ -15,11 +16,11 @@ import io.katharsis.resource.annotations.JsonApiResource;
 public class User implements Serializable, Validatable {
 	private static final long serialVersionUID = 1L;
 
-    @JsonApiId
+	@JsonApiId
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="user_id")
-    private int userId;
+	private int userId;
 
 	@Basic
 	@Column(name = "user_name", nullable = false, insertable = true, updatable = true, length = 45)
@@ -29,9 +30,10 @@ public class User implements Serializable, Validatable {
 	@Column(name = "password", nullable = false, insertable = true, updatable = true, length = 45)
 	private String password;
 
-	@Basic
-	@Column(name = "role", nullable = false, insertable = true, updatable = true, length = 45)
-	private String role;
+	@JsonApiRelation
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "role_id", referencedColumnName = "role_id")
+	private Role role;
 
 	@Basic
 	@Column(name = "full_name", nullable = false, insertable = true, updatable = true, length = 45)
@@ -65,11 +67,11 @@ public class User implements Serializable, Validatable {
 		this.password = password;
 	}
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 

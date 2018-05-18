@@ -41,13 +41,21 @@ public class UserRepositoryImplTest {
     public void testFindAll(){
         QuerySpec spec = new QuerySpec(User.class);
         List<User> users = new ArrayList<>();
+        Role role1 = new Role();
+        role1.setRoleId(1);
+        role1.setRoleName("User");
+
+        Role role2 = new Role();
+        role2.setRoleId(2);
+        role2.setRoleName("Mentor");
+
         User user1 = new User();
         user1.setUserId(1);
         user1.setUserName("btthuan");
         user1.setPassword("123");
         user1.setFullName("Bui Thanh Thuan");
         user1.setStatus(UserStatus.ACTIVE);
-        user1.setRole("User");
+        user1.setRole(role1);
         users.add(user1);
 
         User user2 = new User();
@@ -56,7 +64,7 @@ public class UserRepositoryImplTest {
         user2.setPassword("123");
         user2.setFullName("Hoang Van Trung");
         user2.setStatus(UserStatus.ACTIVE);
-        user2.setRole("User");
+        user2.setRole(role2);
         users.add(user2);
 
         when(jpaRepository.findAll()).thenReturn(users);
@@ -80,13 +88,17 @@ public class UserRepositoryImplTest {
 
     @Test
     public void testSave(){
+        Role role1 = new Role();
+        role1.setRoleId(1);
+        role1.setRoleName("User");
+
         User user1 = new User();
         user1.setUserId(1);
         user1.setUserName("btthuan");
         user1.setPassword("123");
         user1.setFullName("Bui Thanh Thuan");
         user1.setStatus(UserStatus.ACTIVE);
-        user1.setRole("User");
+        user1.setRole(role1);
 
         repository.save(user1);
         ArgumentCaptor<User> argumentCaptor = ArgumentCaptor.forClass(User.class);
@@ -96,13 +108,17 @@ public class UserRepositoryImplTest {
 
     @Test
     public void testDelete(){
+        Role role1 = new Role();
+        role1.setRoleId(1);
+        role1.setRoleName("User");
+
         User user1 = new User();
         user1.setUserId(1);
         user1.setUserName("btthuan");
         user1.setPassword("123");
         user1.setFullName("Bui Thanh Thuan");
         user1.setStatus(UserStatus.ACTIVE);
-        user1.setRole("User");
+        user1.setRole(role1);
 
         when(jpaRepository.getOne(1)).thenReturn(user1);
         repository.delete(1);

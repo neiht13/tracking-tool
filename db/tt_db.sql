@@ -608,6 +608,7 @@ DROP TABLE IF EXISTS `csv_candidate`;
 CREATE TABLE `csv_candidate` (
   `csv_candidate_id` int(11) NOT NULL AUTO_INCREMENT,
   `csv_id` varchar(100) NOT NULL,
+  `status` enum('OPEN','REVIEWED') NOT NULL,
   `full_name` varchar(45) DEFAULT NULL,
   `phone` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,

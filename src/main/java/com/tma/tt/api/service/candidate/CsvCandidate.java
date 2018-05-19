@@ -20,6 +20,10 @@ public class CsvCandidate implements Serializable, Validatable {
     @Column(name = "csv_id", nullable = false, insertable = true, updatable = true, length = 100)
     private String csvId;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private CsvRowStatus status;
+
     @Basic
     @Column(name = "full_name", nullable = false, insertable = true, updatable = true, length = 45)
     @CsvBindByName(column = "full_name", required = true)
@@ -74,6 +78,14 @@ public class CsvCandidate implements Serializable, Validatable {
 
     public void setCsvId(String csvId) {
         this.csvId = csvId;
+    }
+
+    public CsvRowStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(CsvRowStatus status) {
+        this.status = status;
     }
 
     public String getFullName() {

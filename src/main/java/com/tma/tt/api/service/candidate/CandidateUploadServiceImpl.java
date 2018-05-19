@@ -18,7 +18,9 @@ public class CandidateUploadServiceImpl implements CandidateUploadService {
         while (candidates.hasNext()) {
             CsvCandidate csv = candidates.next();
             csv.setCsvId(csvId);
+            csv.setStatus(CsvRowStatus.OPEN);
             jpaRepository.save(csv);
+
             System.out.println("getCsvId : " + csv.getCsvId());
             System.out.println("getPhone : " + csv.getPhone());
             System.out.println("getEmail : " + csv.getEmail());

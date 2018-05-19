@@ -1,4 +1,4 @@
-package com.tma.tt.api.service.model;
+package com.tma.tt.api.service.candidate;
 
 import com.opencsv.bean.CsvBindByName;
 

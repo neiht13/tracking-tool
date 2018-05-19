@@ -1,4 +1,4 @@
-package com.tma.tt.api.service;
+package com.tma.tt.api.service.candidate;
 
 import org.springframework.stereotype.Component;
 

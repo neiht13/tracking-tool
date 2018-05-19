@@ -1,12 +1,7 @@
-package com.tma.tt.api.controller;
+package com.tma.tt.api.service.candidate;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
-import com.tma.tt.api.config.CandidateUploadConfig;
-import com.tma.tt.api.service.CandidateUploadService;
-import com.tma.tt.api.service.model.CSVCandidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +29,7 @@ public class CandidateUploadController {
         this.uploadConfig = uploadConfig;
     }
 
-    @PostMapping("/api/upload-candidate")
+    @PostMapping("/api/candidate-candidate")
     public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         try {
             File folder = new File(uploadConfig.getUploadFolder());

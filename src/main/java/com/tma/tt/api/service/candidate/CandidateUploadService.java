@@ -1,4 +1,4 @@
-package com.tma.tt.api.service;
+package com.tma.tt.api.service.candidate;
 
 public interface CandidateUploadService {
 

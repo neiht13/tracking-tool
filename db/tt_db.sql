@@ -574,6 +574,50 @@ CREATE TABLE `request` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `task_category`
+--
+
+DROP TABLE IF EXISTS `task_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `task_category` (
+  `task_category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  PRIMARY KEY (`task_category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `task_category`
+--
+
+LOCK TABLES `task_category` WRITE;
+/*!40000 ALTER TABLE `task_category` DISABLE KEYS */;
+INSERT INTO `task_category` VALUES (1,'Task for Java Candidate', 'Task for Java Candidate');
+/*!40000 ALTER TABLE `task_category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `task_template`
+--
+
+DROP TABLE IF EXISTS `task_template`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `task_template` (
+  `task_template_id` int(11) NOT NULL AUTO_INCREMENT,
+  `task_category_id` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `estimate` float NOT NULL,
+  `description` varchar(255) NOT NULL,
+  PRIMARY KEY (`task_template_id`),
+  KEY `fk_task_category_idx` (`task_category_id`),
+  CONSTRAINT `fk_task_category` FOREIGN KEY (`task_category_id`) REFERENCES `task_category` (`task_category_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `role`
 --
 

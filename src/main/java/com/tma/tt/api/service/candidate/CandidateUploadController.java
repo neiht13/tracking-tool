@@ -45,7 +45,7 @@ public class CandidateUploadController {
                 failedFolder.mkdir();
             }
             Date date = new Date();
-            String fileName = uploadConfig.getUploadFolder() + "/" + file.getOriginalFilename() + '-'+date.getTime();
+            String fileName = uploadConfig.getUploadFolder() + "/" + date.getTime()+"-"+file.getOriginalFilename();
             File csvFile = new File(fileName);
             csvFile.createNewFile();
             FileOutputStream fos = new FileOutputStream(csvFile);
@@ -54,26 +54,19 @@ public class CandidateUploadController {
 
             Reader reader = Files.newBufferedReader(Paths.get(fileName));
 
-            CsvToBean<CSVCandidate> csvToBean = new CsvToBeanBuilder<CSVCandidate>(reader)
-                    .withType(CSVCandidate.class)
+            CsvToBean<CsvCandidate> csvToBean = new CsvToBeanBuilder<CsvCandidate>(reader)
+                    .withType(CsvCandidate.class)
                     .withIgnoreLeadingWhiteSpace(true)
                     .build();
 
-            Iterator<CSVCandidate> csvIterator = csvToBean.iterator();
-            while (csvIterator.hasNext()) {
-                CSVCandidate csv = csvIterator.next();
-                System.out.println("Name : " + csv.getName());
-                System.out.println("Country : " + csv.getCountry());
-                System.out.println("Description : " + csv.getDescription());
-                System.out.println("==========================");
-            }
+            uploadService.process(csvFile.getName(), csvToBean.iterator());
 
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
         }
 
-        uploadService.process();
+
 
         return "redirect:/";
     }

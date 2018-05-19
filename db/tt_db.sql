@@ -602,6 +602,25 @@ INSERT INTO `role` VALUES (1,'User'),(2,'Mentor'),(3,'Manager'),(4,'RAC');
 UNLOCK TABLES;
 
 
+DROP TABLE IF EXISTS `csv_candidate`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `csv_candidate` (
+  `csv_candidate_id` int(11) NOT NULL AUTO_INCREMENT,
+  `csv_id` varchar(100) NOT NULL,
+  `full_name` varchar(45) DEFAULT NULL,
+  `phone` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `university` varchar(45) DEFAULT NULL,
+  `faculty` varchar(45) DEFAULT NULL,
+  `graduation_year` varchar(45) DEFAULT NULL,
+  `position` varchar(45) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`csv_candidate_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

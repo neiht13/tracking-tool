@@ -408,21 +408,17 @@ DROP TABLE IF EXISTS `candidate`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `candidate` (
   `candidate_id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(45) NOT NULL,
+  `full_name` varchar(45) DEFAULT NULL,
+  `phone` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `university` varchar(45) DEFAULT NULL,
+  `faculty` varchar(45) DEFAULT NULL,
+  `graduation_year` varchar(45) DEFAULT NULL,
+  `position` varchar(45) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`candidate_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `candidate`
---
-
-LOCK TABLES `candidate` WRITE;
-/*!40000 ALTER TABLE `candidate` DISABLE KEYS */;
-INSERT INTO `candidate` VALUES (1,'candidate1');
-/*!40000 ALTER TABLE `candidate` ENABLE KEYS */;
-UNLOCK TABLES;
-
 
 --
 -- Table structure for table `task`

@@ -68,6 +68,9 @@ public class CsvCandidate implements Serializable, Validatable {
     @CsvBindByName(column = "description")
     private String description;
 
+    @Transient
+    private boolean reviewed;
+
     public int getCsvCandidateId() {
         return csvCandidateId;
     }
@@ -154,5 +157,13 @@ public class CsvCandidate implements Serializable, Validatable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isReviewed() {
+        return reviewed;
+    }
+
+    public void setReviewed(boolean reviewed) {
+        this.reviewed = reviewed;
     }
 }

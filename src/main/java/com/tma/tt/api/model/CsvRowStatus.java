@@ -1,4 +1,4 @@
-package com.tma.tt.api.service.candidate;
+package com.tma.tt.api.model;
 
 public enum CsvRowStatus {
     OPEN,

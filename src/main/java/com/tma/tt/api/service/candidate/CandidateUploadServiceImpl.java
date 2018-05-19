@@ -1,7 +1,8 @@
 package com.tma.tt.api.service.candidate;
 
-import com.tma.tt.api.jpa.AreaJpaRepository;
 import com.tma.tt.api.jpa.CsvCandidateJpaRepository;
+import com.tma.tt.api.model.CsvCandidate;
+import com.tma.tt.api.model.CsvRowStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

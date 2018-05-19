@@ -1,16 +1,20 @@
-package com.tma.tt.api.service.candidate;
+package com.tma.tt.api.model;
 
 import com.opencsv.bean.CsvBindByName;
 import com.tma.tt.api.common.Validatable;
+import io.katharsis.resource.annotations.JsonApiId;
+import io.katharsis.resource.annotations.JsonApiResource;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+@JsonApiResource(type = "csv-candidates")
 @Entity
 @Table(name="csv_candidate")
 public class CsvCandidate implements Serializable, Validatable {
     private static final long serialVersionUID = 1L;
 
+    @JsonApiId
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="csv_candidate_id")

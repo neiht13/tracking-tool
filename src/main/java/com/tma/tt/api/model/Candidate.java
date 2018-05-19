@@ -51,9 +51,6 @@ public class Candidate implements Serializable, Validatable {
 	@Column(name = "description", nullable = true, insertable = true, updatable = true, length = 255)
 	private String description;
 
-	@Transient
-	private boolean reviewed;
-
 	public int getCandidateId() {
 		return candidateId;
 	}

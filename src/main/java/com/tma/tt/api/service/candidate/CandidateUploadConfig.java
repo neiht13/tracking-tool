@@ -5,16 +5,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@PropertySource("classpath:candidate-candidate.properties")
+@PropertySource("classpath:candidate-upload.properties")
 public class CandidateUploadConfig {
 
-    @Value("${candidate.folder}")
+    @Value("${upload.folder}")
     private String uploadFolder;
 
-    @Value("${candidate.success.folder}")
+    @Value("${upload.success.folder}")
     private String uploadSuccessFolder;
 
-    @Value("${candidate.failed.folder}")
+    @Value("${upload.failed.folder}")
     private String uploadFailedFolder;
 
     public String getUploadFolder() {

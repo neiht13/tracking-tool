@@ -29,7 +29,7 @@ public class CandidateUploadController {
         this.uploadConfig = uploadConfig;
     }
 
-    @PostMapping("/api/candidate-candidate")
+    @PostMapping("/api/upload-candidate")
     public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         try {
             File folder = new File(uploadConfig.getUploadFolder());

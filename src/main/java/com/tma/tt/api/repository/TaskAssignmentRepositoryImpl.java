@@ -1,7 +1,9 @@
 package com.tma.tt.api.repository;
 
 import com.tma.tt.api.jpa.TaskAssignmentJpaRepository;
+import com.tma.tt.api.jpa.TaskDetailJpaRepository;
 import com.tma.tt.api.model.TaskAssignment;
+import com.tma.tt.api.model.TaskDetail;
 import io.katharsis.queryspec.QuerySpec;
 import io.katharsis.repository.ResourceRepositoryBase;
 import io.katharsis.resource.links.DefaultPagedLinksInformation;
@@ -19,6 +21,9 @@ public class TaskAssignmentRepositoryImpl extends ResourceRepositoryBase<TaskAss
     @Autowired
     private TaskAssignmentJpaRepository jpaRepository;
 
+    @Autowired
+    private TaskDetailJpaRepository jpaTaskDetailRepository;
+
     public TaskAssignmentRepositoryImpl() {
         super(TaskAssignment.class);
     }
@@ -33,7 +38,22 @@ public class TaskAssignmentRepositoryImpl extends ResourceRepositoryBase<TaskAss
 
     @Override
     public TaskAssignment save(TaskAssignment obj) {
-        return jpaRepository.save(obj);
+        List<TaskDetail> tasks = obj.getAttachment();
+        TaskAssignment assignment = jpaRepository.save(obj);
+        for(TaskDetail task : tasks) {
+            TaskDetail detail = null;
+            if (task.getTaskDetailId() != 0) {
+                detail = jpaTaskDetailRepository.getOne(task.getTaskDetailId());
+            } else {
+                detail = new TaskDetail();
+                detail.setTaskAssignment(assignment);
+            }
+            detail.setName(task.getName());
+            detail.setEstimate(task.getEstimate());
+            detail.setDescription(task.getDescription());
+            jpaTaskDetailRepository.save(detail);
+        }
+        return jpaRepository.getOne(assignment.getTaskAssignmentId());
     }
 
     @Override

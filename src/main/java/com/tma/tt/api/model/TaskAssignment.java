@@ -39,6 +39,9 @@ public class TaskAssignment implements Serializable, Validatable {
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
     private String description;
 
+	@Transient
+	private List<TaskDetail> attachment = new ArrayList<TaskDetail>();
+
 	public int getTaskAssignmentId() {
 		return taskAssignmentId;
 	}
@@ -77,5 +80,13 @@ public class TaskAssignment implements Serializable, Validatable {
 
 	public void setTaskDetails(List<TaskDetail> taskDetails) {
 		this.taskDetails = taskDetails;
+	}
+
+	public List<TaskDetail> getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(List<TaskDetail> attachment) {
+		this.attachment = attachment;
 	}
 }

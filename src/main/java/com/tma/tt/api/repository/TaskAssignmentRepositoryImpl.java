@@ -13,6 +13,7 @@ import io.katharsis.resource.meta.DefaultPagedMetaInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -40,6 +41,19 @@ public class TaskAssignmentRepositoryImpl extends ResourceRepositoryBase<TaskAss
     public TaskAssignment save(TaskAssignment obj) {
         List<TaskDetail> tasks = obj.getAttachment();
         TaskAssignment assignment = jpaRepository.save(obj);
+        List<TaskDetail> dbTasks = assignment.getTaskDetails();
+        for(TaskDetail db : dbTasks) {
+            boolean deleted = true;
+            for(TaskDetail task : tasks) {
+                if (task.getTaskDetailId() == db.getTaskDetailId()) {
+                    deleted = false;
+                    break;
+                }
+            }
+            if (deleted) {
+                jpaTaskDetailRepository.delete(db);
+            }
+        }
         for(TaskDetail task : tasks) {
             TaskDetail detail = null;
             if (task.getTaskDetailId() != 0) {

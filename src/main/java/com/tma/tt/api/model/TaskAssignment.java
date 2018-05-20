@@ -29,10 +29,6 @@ public class TaskAssignment implements Serializable, Validatable {
 	@Column(name = "name", nullable = false, insertable = true, updatable = true, length = 45)
 	private String name;
 
-	@Basic
-	@Column(name = "estimate", nullable = false, insertable = true, updatable = true)
-	private float estimate;
-
     @Basic
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
     private String description;
@@ -59,14 +55,6 @@ public class TaskAssignment implements Serializable, Validatable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public float getEstimate() {
-		return estimate;
-	}
-
-	public void setEstimate(float estimate) {
-		this.estimate = estimate;
 	}
 
 	public String getDescription() {

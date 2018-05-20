@@ -628,7 +628,6 @@ CREATE TABLE `task_assignment` (
   `task_assignment_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
-  `estimate` float NOT NULL,
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`task_assignment_id`),
   KEY `fk_user_idx` (`user_id`),

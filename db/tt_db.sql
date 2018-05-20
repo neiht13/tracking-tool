@@ -636,6 +636,25 @@ CREATE TABLE `task_assignment` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `task_detail`
+--
+
+DROP TABLE IF EXISTS `task_detail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `task_detail` (
+  `task_detail_id` int(11) NOT NULL AUTO_INCREMENT,
+  `task_assignment_id` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `estimate` float NOT NULL,
+  `description` varchar(255) NOT NULL,
+  PRIMARY KEY (`task_detail_id`),
+  KEY `fk_task_assignment_idx` (`task_assignment_id`),
+  CONSTRAINT `fk_task_assignment` FOREIGN KEY (`task_assignment_id`) REFERENCES `task_assignment` (`task_assignment_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `role`
 --
 

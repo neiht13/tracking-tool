@@ -7,6 +7,8 @@ import io.katharsis.resource.annotations.JsonApiResource;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @JsonApiResource(type = "task-assignments")
 @Entity
@@ -28,6 +30,10 @@ public class TaskAssignment implements Serializable, Validatable {
 	@Basic
 	@Column(name = "name", nullable = false, insertable = true, updatable = true, length = 45)
 	private String name;
+
+	@JsonApiRelation
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "taskAssignment", orphanRemoval = true)
+	private List<TaskDetail> taskDetails = new ArrayList<TaskDetail>();
 
     @Basic
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
@@ -64,5 +70,12 @@ public class TaskAssignment implements Serializable, Validatable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-    
+
+	public List<TaskDetail> getTaskDetails() {
+		return taskDetails;
+	}
+
+	public void setTaskDetails(List<TaskDetail> taskDetails) {
+		this.taskDetails = taskDetails;
+	}
 }

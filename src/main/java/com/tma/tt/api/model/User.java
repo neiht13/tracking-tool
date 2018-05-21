@@ -1,6 +1,8 @@
 package com.tma.tt.api.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -12,51 +14,49 @@ import io.katharsis.resource.annotations.JsonApiResource;
 
 @JsonApiResource(type = "users")
 @Entity
-@Table(name="user")
+@Table(name="user", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
 public class User implements Serializable, Validatable {
 	private static final long serialVersionUID = 1L;
 
 	@JsonApiId
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="user_id")
-	private int userId;
+	private Long userId;
 
 	@Basic
-	@Column(name = "user_name", nullable = false, insertable = true, updatable = true, length = 45)
-	private String userName;
+	@Column(name = "username", nullable = false, insertable = true, updatable = true, length = 45)
+	private String username;
 
 	@Basic
 	@Column(name = "password", nullable = false, insertable = true, updatable = true, length = 45)
 	private String password;
 
-	@JsonApiRelation
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "role_id", referencedColumnName = "role_id")
-	private Role role;
-
 	@Basic
-	@Column(name = "full_name", nullable = false, insertable = true, updatable = true, length = 45)
-	private String fullName;
+	@Column(name = "name", nullable = false, insertable = true, updatable = true, length = 45)
+	private String name;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "status")
-	private UserStatus status;
+	@JsonApiRelation
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_role",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
 
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -67,27 +67,19 @@ public class User implements Serializable, Validatable {
 		this.password = password;
 	}
 
-	public Role getRole() {
-		return role;
+	public String getName() {
+		return name;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getFullName() {
-		return fullName;
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
-
-	public UserStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(UserStatus status) {
-		this.status = status;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 }

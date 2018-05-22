@@ -138,7 +138,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `uk_user_username` (`username`)

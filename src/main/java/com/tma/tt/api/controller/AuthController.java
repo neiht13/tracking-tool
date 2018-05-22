@@ -1,6 +1,8 @@
 package com.tma.tt.api.controller;
 
+import com.tma.tt.api.exception.AppException;
 import com.tma.tt.api.jpa.UserJpaRepository;
+import com.tma.tt.api.model.User;
 import com.tma.tt.api.payload.JwtAuthenticationResponse;
 import com.tma.tt.api.payload.LoginRequest;
 import com.tma.tt.api.security.JwtTokenProvider;
@@ -57,6 +59,16 @@ public class AuthController {
 
         String jwt = tokenProvider.generateToken(authentication);
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+    }
+
+    @PostMapping("/password")
+    public ResponseEntity<?> changePassword(@Valid @RequestBody LoginRequest loginRequest) {
+
+        User user = jpaRepository.findByUsername(loginRequest.getUsername()).orElseThrow(() -> new AppException("Wrong username."));
+
+        user.setPassword(passwordEncoder.encode(loginRequest.getPassword()));
+        jpaRepository.save(user);
+        return ResponseEntity.ok(new JwtAuthenticationResponse("jwt"));
     }
 }
 

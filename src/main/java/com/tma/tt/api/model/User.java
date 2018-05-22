@@ -29,7 +29,7 @@ public class User implements Serializable, Validatable {
 	private String username;
 
 	@Basic
-	@Column(name = "password", nullable = false, insertable = true, updatable = true, length = 45)
+	@Column(name = "password", nullable = false, insertable = true, updatable = true, length = 100)
 	private String password;
 
 	@Basic

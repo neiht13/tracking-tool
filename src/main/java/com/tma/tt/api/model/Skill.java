@@ -17,7 +17,7 @@ public class Skill implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="skill_id")
-    private int skillId;
+    private Long skillId;
     
     @Basic
     @Column(name = "name", nullable = false, insertable = true, updatable = true, length = 45)
@@ -27,11 +27,11 @@ public class Skill implements Serializable, Validatable {
 	@Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
 	private String description;
 
-	public int getSkillId() {
+	public Long getSkillId() {
 		return skillId;
 	}
 
-	public void setSkillId(int skillId) {
+	public void setSkillId(Long skillId) {
 		this.skillId = skillId;
 	}
 

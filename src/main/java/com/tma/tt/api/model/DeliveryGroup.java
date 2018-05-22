@@ -17,7 +17,7 @@ public class DeliveryGroup implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="delivery_group_id")
-    private int deliveryGroupId;
+    private Long deliveryGroupId;
 
 	@Basic
 	@Column(name = "name", nullable = false, insertable = true, updatable = true, length = 45)
@@ -27,11 +27,11 @@ public class DeliveryGroup implements Serializable, Validatable {
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
     private String description;
 
-	public int getDeliveryGroupId() {
+	public Long getDeliveryGroupId() {
 		return deliveryGroupId;
 	}
 
-	public void setDeliveryGroupId(int deliveryGroupId) {
+	public void setDeliveryGroupId(Long deliveryGroupId) {
 		this.deliveryGroupId = deliveryGroupId;
 	}
 

@@ -17,17 +17,17 @@ public class Task implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="task_id")
-    private int taskId;
+    private Long taskId;
     
     @Basic
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 45)
     private String description;
 
-	public int getTaskId() {
+	public Long getTaskId() {
 		return taskId;
 	}
 
-	public void setTaskId(int taskId) {
+	public void setTaskId(Long taskId) {
 		this.taskId = taskId;
 	}
 

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class TaskAssignmentRepositoryImpl extends ResourceRepositoryBase<TaskAssignment, Integer> implements TaskAssignmentRepository {
+public class TaskAssignmentRepositoryImpl extends ResourceRepositoryBase<TaskAssignment, Long> implements TaskAssignmentRepository {
 
     @Autowired
     private TaskAssignmentJpaRepository jpaRepository;
@@ -71,7 +71,7 @@ public class TaskAssignmentRepositoryImpl extends ResourceRepositoryBase<TaskAss
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         TaskAssignment obj = jpaRepository.getOne(id);
         this.jpaRepository.delete(obj);
     }

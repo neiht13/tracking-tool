@@ -16,7 +16,7 @@ import io.katharsis.resource.list.ResourceList;
 import io.katharsis.resource.meta.DefaultPagedMetaInformation;
 
 @Component
-public class SubjectRepositoryImpl extends ResourceRepositoryBase<Subject, Integer> implements SubjectRepository {
+public class SubjectRepositoryImpl extends ResourceRepositoryBase<Subject, Long> implements SubjectRepository {
 
     @Autowired
     private SubjectJpaRepository jpaRepository;
@@ -39,7 +39,7 @@ public class SubjectRepositoryImpl extends ResourceRepositoryBase<Subject, Integ
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         Subject obj = jpaRepository.getOne(id);
         this.jpaRepository.delete(obj);
     }

@@ -16,7 +16,7 @@ import io.katharsis.resource.list.ResourceList;
 import io.katharsis.resource.meta.DefaultPagedMetaInformation;
 
 @Component
-public class AreaRepositoryImpl extends ResourceRepositoryBase<Area, Integer> implements AreaRepository {
+public class AreaRepositoryImpl extends ResourceRepositoryBase<Area, Long> implements AreaRepository {
 
     @Autowired
     private AreaJpaRepository jpaRepository;
@@ -39,7 +39,7 @@ public class AreaRepositoryImpl extends ResourceRepositoryBase<Area, Integer> im
     }
 
     @Override
-    public void delete(Integer id){
+    public void delete(Long id){
         Area obj = jpaRepository.getOne(id);
         this.jpaRepository.delete(obj);    }
 }

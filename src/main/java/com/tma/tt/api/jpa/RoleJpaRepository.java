@@ -6,6 +6,6 @@ import com.tma.tt.api.model.RoleName;
 
 import java.util.Optional;
 
-public interface RoleJpaRepository extends CommonJpaRepository<Role, Integer> {
+public interface RoleJpaRepository extends CommonJpaRepository<Role, Long> {
     Optional<Role> findByName(RoleName roleName);
 }

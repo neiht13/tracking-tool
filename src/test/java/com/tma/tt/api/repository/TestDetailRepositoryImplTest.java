@@ -41,22 +41,22 @@ public class TestDetailRepositoryImplTest {
     @Test
     public void testFindAll(){
         com.tma.tt.api.model.Test test1 = new com.tma.tt.api.model.Test();
-        test1.setTestId(1);
+        test1.setTestId(1L);
         test1.setDescription("Test 1");
         test1.setCreateDate(new Date(2018,04,1));
         test1.setLevel(2);
 
         Subject subject1 = new Subject();
-        subject1.setSubjectId(1);
+        subject1.setSubjectId(1L);
         subject1.setDescription("Subject 1");
 
         Area area1 = new Area();
-        area1.setAreaId(1);
+        area1.setAreaId(1L);
         area1.setSubject(subject1);
         area1.setDescription("Spring Core");
 
         Question question1 = new Question();
-        question1.setQuestionId(1);
+        question1.setQuestionId(1L);
         question1.setArea(area1);
         question1.setDescription("What is DI stand for");
         question1.setStatus(QuestionStatus.ACTIVE);
@@ -95,22 +95,22 @@ public class TestDetailRepositoryImplTest {
     @Test
     public void testSave(){
         com.tma.tt.api.model.Test test1 = new com.tma.tt.api.model.Test();
-        test1.setTestId(1);
+        test1.setTestId(1L);
         test1.setDescription("Test 1");
         test1.setCreateDate(new Date(2018,04,1));
         test1.setLevel(2);
 
         Subject subject1 = new Subject();
-        subject1.setSubjectId(1);
+        subject1.setSubjectId(1L);
         subject1.setDescription("Subject 1");
 
         Area area1 = new Area();
-        area1.setAreaId(1);
+        area1.setAreaId(1L);
         area1.setSubject(subject1);
         area1.setDescription("Spring Core");
 
         Question question1 = new Question();
-        question1.setQuestionId(1);
+        question1.setQuestionId(1L);
         question1.setArea(area1);
         question1.setDescription("What is DI stand for");
         question1.setStatus(QuestionStatus.ACTIVE);
@@ -129,22 +129,22 @@ public class TestDetailRepositoryImplTest {
     @Test
     public void testDelete(){
         com.tma.tt.api.model.Test test1 = new com.tma.tt.api.model.Test();
-        test1.setTestId(1);
+        test1.setTestId(1L);
         test1.setDescription("Test 1");
         test1.setCreateDate(new Date(2018,04,1));
         test1.setLevel(2);
 
         Subject subject1 = new Subject();
-        subject1.setSubjectId(1);
+        subject1.setSubjectId(1L);
         subject1.setDescription("Subject 1");
 
         Area area1 = new Area();
-        area1.setAreaId(1);
+        area1.setAreaId(1L);
         area1.setSubject(subject1);
         area1.setDescription("Spring Core");
 
         Question question1 = new Question();
-        question1.setQuestionId(1);
+        question1.setQuestionId(1L);
         question1.setArea(area1);
         question1.setDescription("What is DI stand for");
         question1.setStatus(QuestionStatus.ACTIVE);

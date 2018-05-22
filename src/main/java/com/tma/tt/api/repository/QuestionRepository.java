@@ -4,6 +4,6 @@ import com.tma.tt.api.model.Question;
 
 import io.katharsis.repository.ResourceRepositoryV2;
 
-public interface QuestionRepository extends ResourceRepositoryV2<Question, Integer> {
+public interface QuestionRepository extends ResourceRepositoryV2<Question, Long> {
 
 }

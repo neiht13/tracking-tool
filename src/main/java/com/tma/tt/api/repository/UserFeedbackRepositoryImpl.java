@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class UserFeedbackRepositoryImpl extends ResourceRepositoryBase<UserFeedback, Integer> implements UserFeedbackRepository {
+public class UserFeedbackRepositoryImpl extends ResourceRepositoryBase<UserFeedback, Long> implements UserFeedbackRepository {
 
     @Autowired
     private UserFeedbackJpaRepository jpaRepository;
@@ -37,7 +37,7 @@ public class UserFeedbackRepositoryImpl extends ResourceRepositoryBase<UserFeedb
     }
 
     @Override
-    public void delete(Integer id){
+    public void delete(Long id){
         UserFeedback obj = jpaRepository.getOne(id);
         jpaRepository.delete(obj);
     }

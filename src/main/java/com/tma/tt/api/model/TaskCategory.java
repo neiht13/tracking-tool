@@ -17,7 +17,7 @@ public class TaskCategory implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="task_category_id")
-    private int taskCategoryId;
+    private Long taskCategoryId;
 
 	@Basic
 	@Column(name = "name", nullable = false, insertable = true, updatable = true, length = 45)
@@ -27,11 +27,11 @@ public class TaskCategory implements Serializable, Validatable {
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
     private String description;
 
-	public int getTaskCategoryId() {
+	public Long getTaskCategoryId() {
 		return taskCategoryId;
 	}
 
-	public void setTaskCategoryId(int taskCategoryId) {
+	public void setTaskCategoryId(Long taskCategoryId) {
 		this.taskCategoryId = taskCategoryId;
 	}
 

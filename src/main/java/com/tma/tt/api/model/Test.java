@@ -26,7 +26,7 @@ public class Test implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="test_id")
-    private int testId;
+    private Long testId;
     
     @Basic
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 45)
@@ -40,11 +40,11 @@ public class Test implements Serializable, Validatable {
     @Column(name = "create_date", nullable = true, insertable = true, updatable = true)
     private Date createDate;
 
-    public int getTestId() {
+    public Long getTestId() {
         return testId;
     }
 
-    public void setTestId(int testId) {
+    public void setTestId(Long testId) {
         this.testId = testId;
     }
 

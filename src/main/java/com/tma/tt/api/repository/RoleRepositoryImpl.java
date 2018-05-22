@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class RoleRepositoryImpl extends ResourceRepositoryBase<Role, Integer> implements RoleRepository {
+public class RoleRepositoryImpl extends ResourceRepositoryBase<Role, Long> implements RoleRepository {
 
     @Autowired
     private RoleJpaRepository jpaRepository;
@@ -37,7 +37,7 @@ public class RoleRepositoryImpl extends ResourceRepositoryBase<Role, Integer> im
     }
 
     @Override
-    public void delete(Integer id){
+    public void delete(Long id){
         Role obj = jpaRepository.getOne(id);
         this.jpaRepository.delete(obj);    }
 }

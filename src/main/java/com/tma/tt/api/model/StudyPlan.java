@@ -21,7 +21,7 @@ public class StudyPlan implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="study_plan_id")
-    private int studyPlanId;
+    private Long studyPlanId;
 
     @JsonApiRelation
     @ManyToOne(fetch = FetchType.LAZY)
@@ -37,11 +37,11 @@ public class StudyPlan implements Serializable, Validatable {
     @Column(name = "completed")
     private YesNoFlag completed;
 
-    public int getStudyPlanId() {
+    public Long getStudyPlanId() {
         return studyPlanId;
     }
 
-    public void setStudyPlanId(int studyPlanId) {
+    public void setStudyPlanId(Long studyPlanId) {
         this.studyPlanId = studyPlanId;
     }
 

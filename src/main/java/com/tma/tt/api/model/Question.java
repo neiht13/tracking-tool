@@ -31,7 +31,7 @@ public class Question implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="question_id")
-    private int questionId;
+    private Long questionId;
 
 	@JsonApiRelation
     @ManyToOne(fetch = FetchType.LAZY)
@@ -50,11 +50,11 @@ public class Question implements Serializable, Validatable {
 	@Column(name = "question_type")
 	private QuestionType type;
 
-	public int getQuestionId() {
+	public Long getQuestionId() {
 		return questionId;
 	}
 
-	public void setQuestionId(int questionId) {
+	public void setQuestionId(Long questionId) {
 		this.questionId = questionId;
 	}
 

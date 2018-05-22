@@ -20,7 +20,7 @@ public class TaskAssignment implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="task_assignment_id")
-    private int taskAssignmentId;
+    private Long taskAssignmentId;
 
 	@JsonApiRelation
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -42,11 +42,11 @@ public class TaskAssignment implements Serializable, Validatable {
 	@Transient
 	private List<TaskDetail> attachment = new ArrayList<TaskDetail>();
 
-	public int getTaskAssignmentId() {
+	public Long getTaskAssignmentId() {
 		return taskAssignmentId;
 	}
 
-	public void setTaskAssignmentId(int taskAssignmentId) {
+	public void setTaskAssignmentId(Long taskAssignmentId) {
 		this.taskAssignmentId = taskAssignmentId;
 	}
 

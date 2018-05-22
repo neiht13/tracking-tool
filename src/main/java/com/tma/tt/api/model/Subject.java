@@ -25,17 +25,17 @@ public class Subject implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="subject_id")
-    private int subjectId;
+    private Long subjectId;
     
     @Basic
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 45)
     private String description;
 
-	public int getSubjectId() {
+	public Long getSubjectId() {
 		return subjectId;
 	}
 
-	public void setSubjectId(int subjectId) {
+	public void setSubjectId(Long subjectId) {
 		this.subjectId = subjectId;
 	}
 

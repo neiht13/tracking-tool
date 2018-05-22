@@ -13,11 +13,11 @@ public class TestDetailId implements Serializable {
 	
 	@Basic
 	@Column(name="test_id")
-    private int testId;
+    private Long testId;
 	
 	@Basic
 	@Column(name="question_id")
-    private int questionId;
+    private Long questionId;
 
 	public TestDetailId() {
 		
@@ -25,8 +25,8 @@ public class TestDetailId implements Serializable {
 	
 	public TestDetailId(String compositeId) {
         Object[] ids = CommonJsonApiUtils.getValuesFromDelimitedString(compositeId, CommonJsonApiUtils.COMPOSITE_ID_SEPARATOR, new Class[]{Integer.class, Integer.class});
-        this.testId = (Integer)ids[0];
-        this.questionId = (Integer)ids[1];
+        this.testId = (Long)ids[0];
+        this.questionId = (Long)ids[1];
     }
 	
 	public String getCompositeId() {

@@ -18,7 +18,7 @@ public class TaskDetail implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="task_detail_id")
-    private int taskDetailId;
+    private Long taskDetailId;
 
 	@JsonApiRelation
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -37,11 +37,11 @@ public class TaskDetail implements Serializable, Validatable {
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
     private String description;
 
-	public int getTaskDetailId() {
+	public Long getTaskDetailId() {
 		return taskDetailId;
 	}
 
-	public void setTaskDetailId(int taskDetailId) {
+	public void setTaskDetailId(Long taskDetailId) {
 		this.taskDetailId = taskDetailId;
 	}
 

@@ -19,7 +19,7 @@ public class UserTestResult implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="user_test_result_id")
-    private int userTestResultId;
+    private Long userTestResultId;
 
     @JsonApiRelation
     @ManyToOne(fetch = FetchType.LAZY)
@@ -44,11 +44,11 @@ public class UserTestResult implements Serializable, Validatable {
     @Column(name = "corrected")
     private YesNoFlag corrected;
 
-    public int getUserTestResultId() {
+    public Long getUserTestResultId() {
         return userTestResultId;
     }
 
-    public void setUserTestResultId(int userTestResultId) {
+    public void setUserTestResultId(Long userTestResultId) {
         this.userTestResultId = userTestResultId;
     }
 

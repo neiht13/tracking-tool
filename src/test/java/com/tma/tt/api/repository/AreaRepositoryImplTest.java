@@ -40,23 +40,23 @@ public class AreaRepositoryImplTest {
     @Test
     public void testFindAll(){
         Subject subject1 = new Subject();
-        subject1.setSubjectId(1);
+        subject1.setSubjectId(1L);
         subject1.setDescription("Subject 1");
 
         Subject subject2 = new Subject();
-        subject2.setSubjectId(1);
+        subject2.setSubjectId(1L);
         subject2.setDescription("Subject 2");
 
         QuerySpec spec = new QuerySpec(Area.class);
         List<Area> areas = new ArrayList<>();
         Area area1 = new Area();
-        area1.setAreaId(1);
+        area1.setAreaId(1L);
         area1.setDescription("Area 1");
         area1.setSubject(subject1);
         areas.add(area1);
 
         Area area2 = new Area();
-        area2.setAreaId(2);
+        area2.setAreaId(2L);
         area2.setDescription("Area 1");
         area2.setSubject(subject2);
         areas.add(area2);
@@ -81,11 +81,11 @@ public class AreaRepositoryImplTest {
     @Test
     public void testSave(){
         Subject subject1 = new Subject();
-        subject1.setSubjectId(1);
+        subject1.setSubjectId(1L);
         subject1.setDescription("Subject 1");
 
         Area area1 = new Area();
-        area1.setAreaId(1);
+        area1.setAreaId(1L);
         area1.setDescription("Area 1");
         area1.setSubject(subject1);
 
@@ -98,16 +98,16 @@ public class AreaRepositoryImplTest {
     @Test
     public void testDelete(){
         Subject subject1 = new Subject();
-        subject1.setSubjectId(1);
+        subject1.setSubjectId(1L);
         subject1.setDescription("Subject 1");
 
         Area area1 = new Area();
-        area1.setAreaId(1);
+        area1.setAreaId(1L);
         area1.setDescription("Area 1");
         area1.setSubject(subject1);
 
-        when(jpaRepository.getOne(2)).thenReturn(area1);
-        repository.delete(2);
+        when(jpaRepository.getOne(2L)).thenReturn(area1);
+        repository.delete(2L);
 
         ArgumentCaptor<Area> areaArgumentCaptor = ArgumentCaptor.forClass(Area.class);
         verify(jpaRepository).delete(areaArgumentCaptor.capture());

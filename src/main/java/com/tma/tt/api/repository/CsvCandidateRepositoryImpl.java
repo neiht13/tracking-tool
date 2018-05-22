@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class CsvCandidateRepositoryImpl extends ResourceRepositoryBase<CsvCandidate, Integer> implements CsvCandidateRepository {
+public class CsvCandidateRepositoryImpl extends ResourceRepositoryBase<CsvCandidate, Long> implements CsvCandidateRepository {
 
     @Autowired
     private CsvCandidateJpaRepository jpaCsvRepository;
@@ -56,7 +56,7 @@ public class CsvCandidateRepositoryImpl extends ResourceRepositoryBase<CsvCandid
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         CsvCandidate obj = jpaCsvRepository.getOne(id);
         this.jpaCsvRepository.delete(obj);
     }

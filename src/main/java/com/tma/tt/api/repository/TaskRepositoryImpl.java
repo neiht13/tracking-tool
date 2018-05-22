@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class TaskRepositoryImpl extends ResourceRepositoryBase<Task, Integer> implements TaskRepository {
+public class TaskRepositoryImpl extends ResourceRepositoryBase<Task, Long> implements TaskRepository {
 
     @Autowired
     private TaskJpaRepository jpaRepository;
@@ -37,7 +37,7 @@ public class TaskRepositoryImpl extends ResourceRepositoryBase<Task, Integer> im
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         Task obj = jpaRepository.getOne(id);
         this.jpaRepository.delete(obj);
     }

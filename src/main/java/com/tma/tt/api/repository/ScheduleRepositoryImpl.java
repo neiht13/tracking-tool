@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class ScheduleRepositoryImpl extends ResourceRepositoryBase<Schedule, Integer> implements ScheduleRepository {
+public class ScheduleRepositoryImpl extends ResourceRepositoryBase<Schedule, Long> implements ScheduleRepository {
 
     @Autowired
     private ScheduleJpaRepository jpaRepository;
@@ -38,7 +38,7 @@ public class ScheduleRepositoryImpl extends ResourceRepositoryBase<Schedule, Int
     }
 
     @Override
-    public void delete(Integer id){
+    public void delete(Long id){
         Schedule obj = jpaRepository.getOne(id);
         this.jpaRepository.delete(obj);    }
 }

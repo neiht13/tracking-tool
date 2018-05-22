@@ -1,19 +1,9 @@
 package com.tma.tt.api.model;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.tma.tt.api.common.Validatable;
 
@@ -37,7 +27,13 @@ public class Question implements Serializable, Validatable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "area_id", referencedColumnName = "area_id")
     private Area area;
-    
+
+	@JsonApiRelation
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "question_id", referencedColumnName = "question_id")
+	@OrderBy("choiceId")
+	private List<QuestionChoice> questionChoices;
+
     @Basic
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
     private String description;
@@ -89,5 +85,12 @@ public class Question implements Serializable, Validatable {
 	public void setType(QuestionType type) {
 		this.type = type;
 	}
-    
+
+	public List<QuestionChoice> getQuestionChoices() {
+		return questionChoices;
+	}
+
+	public void setQuestionChoices(List<QuestionChoice> questionChoices) {
+		this.questionChoices = questionChoices;
+	}
 }

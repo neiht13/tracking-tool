@@ -2,18 +2,14 @@ package com.tma.tt.api.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.tma.tt.api.common.Validatable;
 
 import io.katharsis.resource.annotations.JsonApiId;
+import io.katharsis.resource.annotations.JsonApiRelation;
 import io.katharsis.resource.annotations.JsonApiResource;
 
 @JsonApiResource(type = "tests")
@@ -31,6 +27,12 @@ public class Test implements Serializable, Validatable {
     @Basic
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 45)
     private String description;
+
+    @JsonApiRelation
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "test_id", referencedColumnName = "test_id")
+    @OrderBy("testDetailId")
+    private List<TestDetail> testDetails;
 
     @Basic
     @Column(name = "level", nullable = false, insertable = true, updatable = true, length = 11)
@@ -70,5 +72,13 @@ public class Test implements Serializable, Validatable {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public List<TestDetail> getTestDetails() {
+        return testDetails;
+    }
+
+    public void setTestDetails(List<TestDetail> testDetails) {
+        this.testDetails = testDetails;
     }
 }

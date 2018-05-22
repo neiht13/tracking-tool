@@ -186,7 +186,8 @@ INSERT INTO `role` VALUES
     (2,'DG_ROLE'),
     (3,'DC_ROLE'),
     (4,'RAC_ROLE'),
-    (5,'USER_ROLE');
+    (5,'MENTOR_ROLE'),
+    (6,'USER_ROLE');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,7 +219,8 @@ INSERT INTO `user_role` VALUES
     (3,3),
     (4,4),
     (5,4),
-    (5,5);
+    (5,5),
+    (5,6);
 UNLOCK TABLES;
 
 --

@@ -16,7 +16,7 @@ import io.katharsis.resource.meta.DefaultPagedMetaInformation;
 import java.util.List;
 
 @Component
-public class UserRepositoryImpl extends ResourceRepositoryBase<User, Integer> implements UserRepository {
+public class UserRepositoryImpl extends ResourceRepositoryBase<User, Long> implements UserRepository {
 
     @Autowired
     private UserJpaRepository jpaRepository;
@@ -39,7 +39,7 @@ public class UserRepositoryImpl extends ResourceRepositoryBase<User, Integer> im
     }
 
     @Override
-    public void delete(Integer id){
+    public void delete(Long id){
         User obj = jpaRepository.getOne(id);
         jpaRepository.delete(obj);
     }

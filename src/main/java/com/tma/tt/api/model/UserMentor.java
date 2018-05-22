@@ -20,7 +20,7 @@ public class UserMentor implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="user_mentor_id")
-    private int userMentorId;
+    private Long userMentorId;
 
 	@JsonApiRelation
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -37,11 +37,11 @@ public class UserMentor implements Serializable, Validatable {
 	@JoinColumn(name = "area_id", referencedColumnName = "area_id")
 	private Area area;
 
-	public int getUserMentorId() {
+	public Long getUserMentorId() {
 		return userMentorId;
 	}
 
-	public void setUserMentorId(int userMentorId) {
+	public void setUserMentorId(Long userMentorId) {
 		this.userMentorId = userMentorId;
 	}
 

@@ -21,7 +21,7 @@ public class UserFeedback implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="user_feedback_id")
-    private int userFeedbackId;
+    private Long userFeedbackId;
 
 	@JsonApiRelation
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -41,11 +41,11 @@ public class UserFeedback implements Serializable, Validatable {
 	@Column(name = "feedback_date", nullable = false)
 	private Date feedbackDate;
 
-	public int getUserFeedbackId() {
+	public Long getUserFeedbackId() {
 		return userFeedbackId;
 	}
 
-	public void setUserFeedbackId(int userFeedbackId) {
+	public void setUserFeedbackId(Long userFeedbackId) {
 		this.userFeedbackId = userFeedbackId;
 	}
 

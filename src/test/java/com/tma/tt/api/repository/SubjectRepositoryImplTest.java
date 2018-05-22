@@ -41,12 +41,12 @@ public class SubjectRepositoryImplTest {
         QuerySpec spec = new QuerySpec(Subject.class);
         List<Subject> subjects = new ArrayList<>();
         Subject subject1 = new Subject();
-        subject1.setSubjectId(1);
+        subject1.setSubjectId(1L);
         subject1.setDescription("Subject 1");
         subjects.add(subject1);
 
         Subject subject2 = new Subject();
-        subject2.setSubjectId(2);
+        subject2.setSubjectId(2L);
         subject2.setDescription("Subject 2");
         subjects.add(subject2);
 
@@ -70,7 +70,7 @@ public class SubjectRepositoryImplTest {
     @Test
     public void testSave(){
         Subject subject1 = new Subject();
-        subject1.setSubjectId(1);
+        subject1.setSubjectId(1L);
         subject1.setDescription("Subject 1");
 
         repository.save(subject1);
@@ -82,10 +82,10 @@ public class SubjectRepositoryImplTest {
     @Test
     public void testDelete(){
         Subject subject1 = new Subject();
-        subject1.setSubjectId(1);
+        subject1.setSubjectId(1L);
         subject1.setDescription("Subject 1");
-        when(jpaRepository.getOne(1)).thenReturn(subject1);
-        repository.delete(1);
+        when(jpaRepository.getOne(1L)).thenReturn(subject1);
+        repository.delete(1L);
 
         ArgumentCaptor<Subject> argumentCaptor = ArgumentCaptor.forClass(Subject.class);
         verify(jpaRepository).delete(argumentCaptor.capture());

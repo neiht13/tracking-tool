@@ -40,27 +40,27 @@ public class QuestionRepositoryImplTest {
     @Test
     public void testFindAll(){
         Subject subject1 = new Subject();
-        subject1.setSubjectId(1);
+        subject1.setSubjectId(1L);
         subject1.setDescription("Subject 1");
 
         Subject subject2 = new Subject();
-        subject2.setSubjectId(2);
+        subject2.setSubjectId(2L);
         subject2.setDescription("Subject 2");
 
         Area area1 = new Area();
-        area1.setAreaId(1);
+        area1.setAreaId(1L);
         area1.setDescription("Area 1");
         area1.setSubject(subject1);
 
         Area area2 = new Area();
-        area2.setAreaId(2);
+        area2.setAreaId(2L);
         area2.setDescription("Area 2");
         area2.setSubject(subject2);
 
         QuerySpec spec = new QuerySpec(Question.class);
         List<Question> questions = new ArrayList<>();
         Question question1 = new Question();
-        question1.setQuestionId(1);
+        question1.setQuestionId(1L);
         question1.setDescription("Question 1");
         question1.setArea(area1);
         question1.setStatus(QuestionStatus.ACTIVE);
@@ -68,7 +68,7 @@ public class QuestionRepositoryImplTest {
         questions.add(question1);
 
         Question question2 = new Question();
-        question2.setQuestionId(2);
+        question2.setQuestionId(2L);
         question2.setDescription("Question 2");
         question2.setArea(area2);
         question2.setStatus(QuestionStatus.ACTIVE);
@@ -97,16 +97,16 @@ public class QuestionRepositoryImplTest {
     @Test
     public void testSave(){
         Subject subject1 = new Subject();
-        subject1.setSubjectId(1);
+        subject1.setSubjectId(1L);
         subject1.setDescription("Subject 1");
 
         Area area1 = new Area();
-        area1.setAreaId(1);
+        area1.setAreaId(1L);
         area1.setDescription("Area 1");
         area1.setSubject(subject1);
 
         Question question1 = new Question();
-        question1.setQuestionId(1);
+        question1.setQuestionId(1L);
         question1.setDescription("Question 1");
         question1.setArea(area1);
         question1.setStatus(QuestionStatus.ACTIVE);
@@ -122,23 +122,23 @@ public class QuestionRepositoryImplTest {
     @Test
     public void testDelete(){
         Subject subject1 = new Subject();
-        subject1.setSubjectId(1);
+        subject1.setSubjectId(1L);
         subject1.setDescription("Subject 1");
 
         Area area1 = new Area();
-        area1.setAreaId(1);
+        area1.setAreaId(1L);
         area1.setDescription("Area 1");
         area1.setSubject(subject1);
 
         Question question1 = new Question();
-        question1.setQuestionId(1);
+        question1.setQuestionId(1L);
         question1.setDescription("Question 1");
         question1.setArea(area1);
         question1.setStatus(QuestionStatus.ACTIVE);
         question1.setType(QuestionType.FILL_IN);
 
-        when(jpaRepository.getOne(1)).thenReturn(question1);
-        repository.delete(1);
+        when(jpaRepository.getOne(1L)).thenReturn(question1);
+        repository.delete(1L);
 
         ArgumentCaptor<Question> argumentCaptor = ArgumentCaptor.forClass(Question.class);
         verify(jpaRepository).delete(argumentCaptor.capture());

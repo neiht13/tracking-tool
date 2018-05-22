@@ -18,7 +18,7 @@ public class Project implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="project_id")
-    private int projectId;
+    private Long projectId;
 
 	@JsonApiRelation
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -33,11 +33,11 @@ public class Project implements Serializable, Validatable {
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
     private String description;
 
-	public int getProjectId() {
+	public Long getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(int projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
 

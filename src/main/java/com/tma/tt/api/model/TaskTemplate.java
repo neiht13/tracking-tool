@@ -18,7 +18,7 @@ public class TaskTemplate implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="task_template_id")
-    private int taskTemplateId;
+    private Long taskTemplateId;
 
 	@JsonApiRelation
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -37,11 +37,11 @@ public class TaskTemplate implements Serializable, Validatable {
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
     private String description;
 
-	public int getTaskTemplateId() {
+	public Long getTaskTemplateId() {
 		return taskTemplateId;
 	}
 
-	public void setTaskTemplateId(int taskTemplateId) {
+	public void setTaskTemplateId(Long taskTemplateId) {
 		this.taskTemplateId = taskTemplateId;
 	}
 

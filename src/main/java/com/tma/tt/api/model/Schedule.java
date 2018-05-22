@@ -20,7 +20,7 @@ public class Schedule implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="schedule_id")
-    private int scheduleId;
+    private Long scheduleId;
     
     @Basic
     @Column(name = "week_id", nullable = false, insertable = true, updatable = true, length = 10)
@@ -71,11 +71,11 @@ public class Schedule implements Serializable, Validatable {
 	@Column(name = "fri_a")
 	private YesNoFlag friA;
 
-	public int getScheduleId() {
+	public Long getScheduleId() {
 		return scheduleId;
 	}
 
-	public void setScheduleId(int scheduleId) {
+	public void setScheduleId(Long scheduleId) {
 		this.scheduleId = scheduleId;
 	}
 

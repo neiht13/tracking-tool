@@ -17,7 +17,7 @@ public class Candidate implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="candidate_id")
-	private int candidateId;
+	private Long candidateId;
 
 	@Basic
 	@Column(name = "full_name", nullable = false, insertable = true, updatable = true, length = 45)
@@ -51,11 +51,11 @@ public class Candidate implements Serializable, Validatable {
 	@Column(name = "description", nullable = true, insertable = true, updatable = true, length = 255)
 	private String description;
 
-	public int getCandidateId() {
+	public Long getCandidateId() {
 		return candidateId;
 	}
 
-	public void setCandidateId(int candidateId) {
+	public void setCandidateId(Long candidateId) {
 		this.candidateId = candidateId;
 	}
 

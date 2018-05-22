@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class DeliveryGroupRepositoryImpl extends ResourceRepositoryBase<DeliveryGroup, Integer> implements DeliveryGroupRepository {
+public class DeliveryGroupRepositoryImpl extends ResourceRepositoryBase<DeliveryGroup, Long> implements DeliveryGroupRepository {
 
     @Autowired
     private DeliveryGroupJpaRepository jpaRepository;
@@ -37,7 +37,7 @@ public class DeliveryGroupRepositoryImpl extends ResourceRepositoryBase<Delivery
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         DeliveryGroup obj = jpaRepository.getOne(id);
         this.jpaRepository.delete(obj);
     }

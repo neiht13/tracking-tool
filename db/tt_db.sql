@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `subject`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `subject` (
-  `subject_id` int(11) NOT NULL AUTO_INCREMENT,
+  `subject_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` varchar(45) NOT NULL,
   PRIMARY KEY (`subject_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -50,8 +50,8 @@ DROP TABLE IF EXISTS `area`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `area` (
-  `area_id` int(11) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(11) NOT NULL,
+  `area_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `subject_id` bigint(20) NOT NULL,
   `description` varchar(45) NOT NULL,
   PRIMARY KEY (`area_id`),
   KEY `fk_subject_idx` (`subject_id`),
@@ -77,8 +77,8 @@ DROP TABLE IF EXISTS `question`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `question` (
-  `question_id` int(11) NOT NULL AUTO_INCREMENT,
-  `area_id` int(11) NOT NULL,
+  `question_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `area_id` bigint(20) NOT NULL,
   `description` varchar(255) NOT NULL,
   `status` enum('ACTIVE','INACTIVE') NOT NULL,
   `question_type` enum('SINGLE_CHOICE','MULTI_CHOICE','FILL_IN') NOT NULL,
@@ -106,8 +106,8 @@ DROP TABLE IF EXISTS `question_choice`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `question_choice` (
-  `choice_id` int(11) NOT NULL AUTO_INCREMENT,
-  `question_id` int(11) NOT NULL,
+  `choice_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `question_id` bigint(20) NOT NULL,
   `description` varchar(255) NOT NULL,
   `corrected` enum('Y','N') NOT NULL,
   `fill_in` varchar(255) DEFAULT NULL,
@@ -136,13 +136,12 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `full_name` varchar(45) NOT NULL,
-  `status` enum('ACTIVE','INACTIVE') NOT NULL,
-  PRIMARY KEY (`user_id`)
+  `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `uk_user_username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -152,8 +151,69 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'btthuan','123',2,'Bui Thanh Thuan','ACTIVE'),(2,'nvluong','123',1,'Nguyen Van Luong','ACTIVE'),(3,'nvtri','123',1,'Nguyen Van Tri','ACTIVE'),(4,'hvtrung','123',2,'Hoang Van Trung','INACTIVE');
+INSERT INTO `user` VALUES
+    (1,'btthuan','$2a$10$J5XpBSu92vN2T6Ra6obMO.95RMHb6CCbwKjxQDq.o.pgkzlPpnGqm','Bui Thanh Thuan'),
+    (2,'nvluong','$2a$10$J5XpBSu92vN2T6Ra6obMO.95RMHb6CCbwKjxQDq.o.pgkzlPpnGqm','Nguyen Van Luong'),
+    (3,'nvtri','$2a$10$J5XpBSu92vN2T6Ra6obMO.95RMHb6CCbwKjxQDq.o.pgkzlPpnGqm','Nguyen Van Tri'),
+    (4,'hvtrung','$2a$10$J5XpBSu92vN2T6Ra6obMO.95RMHb6CCbwKjxQDq.o.pgkzlPpnGqm','Hoang Van Trung');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `role` (
+  `role_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  PRIMARY KEY (`role_id`),
+  UNIQUE KEY `uk_role_name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role`
+--
+
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES
+    (1,'ROLE_USER'),
+    (2,'ROLE_ADMIN');
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_role`
+--
+
+DROP TABLE IF EXISTS `user_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_role` (
+  `user_id` bigint(20) NOT NULL,
+  `role_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`),
+  KEY `fk_user_role_role_id_idx` (`role_id`),
+  CONSTRAINT `fk_user_role_role_id` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`),
+  CONSTRAINT `fk_user_role_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_role`
+--
+
+LOCK TABLES `user_role` WRITE;
+INSERT INTO `user_role` VALUES
+    (1,1),
+    (2,1),
+    (3,1),
+    (4,1),
+    (4,2);
 UNLOCK TABLES;
 
 --
@@ -164,9 +224,9 @@ DROP TABLE IF EXISTS `test`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `test` (
-  `test_id` int(11) NOT NULL AUTO_INCREMENT,
+  `test_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` varchar(45) NOT NULL,
-  `level` int(11) NOT NULL,
+  `level` bigint(20) NOT NULL,
   `create_date` datetime DEFAULT NULL,
   PRIMARY KEY (`test_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -190,9 +250,9 @@ DROP TABLE IF EXISTS `study_plan`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `study_plan` (
-  `study_plan_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `area_id` int(11) NOT NULL,
+  `study_plan_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL,
+  `area_id` bigint(20) NOT NULL,
   `completed` enum('Y','N') NOT NULL,
   PRIMARY KEY (`study_plan_id`),
   KEY `fk_user_idx_idx` (`user_id`),
@@ -220,8 +280,8 @@ DROP TABLE IF EXISTS `test_detail`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `test_detail` (
-  `test_id` int(11) NOT NULL,
-  `question_id` int(11) NOT NULL,
+  `test_id` bigint(20) NOT NULL,
+  `question_id` bigint(20) NOT NULL,
   PRIMARY KEY (`test_id`,`question_id`),
   KEY `fk_test_question_idx` (`question_id`),
   CONSTRAINT `fk_test_idx` FOREIGN KEY (`test_id`) REFERENCES `test` (`test_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -247,9 +307,9 @@ DROP TABLE IF EXISTS `user_test`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_test` (
-  `user_test_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `test_id` int(11) NOT NULL,
+  `user_test_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL,
+  `test_id` bigint(20) NOT NULL,
   `score` int(11) DEFAULT NULL,
   `test_date` datetime DEFAULT NULL,
   PRIMARY KEY (`user_test_id`),
@@ -278,10 +338,10 @@ DROP TABLE IF EXISTS `user_test_result`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_test_result` (
-  `user_test_result_id` int(11) NOT NULL,
-  `user_test_id` int(11) DEFAULT NULL,
-  `question_id` int(11) NOT NULL,
-  `choice_id` int(11) NOT NULL,
+  `user_test_result_id` bigint(20) NOT NULL,
+  `user_test_id` bigint(20) DEFAULT NULL,
+  `question_id` bigint(20) NOT NULL,
+  `choice_id` bigint(20) NOT NULL,
   `fill_in` varchar(255) DEFAULT NULL,
   `corrected` enum('Y','N') NOT NULL,
   PRIMARY KEY (`user_test_result_id`),
@@ -312,17 +372,17 @@ DROP TABLE IF EXISTS `user_mentor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_mentor` (
-  `user_mentor_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `mentor_id` int(11) NOT NULL,
-  `area_id` int(11) NOT NULL,
+  `user_mentor_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL,
+  `mentor_id` bigint(20) NOT NULL,
+  `area_id` bigint(20) NOT NULL,
   PRIMARY KEY (`user_mentor_id`),
   KEY `fk_mentor_idx_idx` (`mentor_id`),
   KEY `fk_area_idx_idx` (`area_id`),
   KEY `fk_user_idx_idx` (`user_id`),
   CONSTRAINT `fk_area_idx` FOREIGN KEY (`area_id`) REFERENCES `area` (`area_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_mentor_idx` FOREIGN KEY (`mentor_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_idx` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_user_idx1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -344,11 +404,11 @@ DROP TABLE IF EXISTS `user_feedback`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_feedback` (
-  `user_feedback_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
+  `user_feedback_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL,
   `description` varchar(45) DEFAULT NULL,
   `feedback_date` datetime DEFAULT NULL,
-  `feeder` int(11) DEFAULT NULL,
+  `feeder` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`user_feedback_id`),
   KEY `fk_uf_user_id_idx` (`user_id`),
   KEY `fk_fb_from_idx` (`feeder`),
@@ -371,9 +431,9 @@ DROP TABLE IF EXISTS `schedule`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `schedule` (
-  `schedule_id` int(11) NOT NULL AUTO_INCREMENT,
+  `schedule_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `week_id` varchar(20) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
   `mon_m` enum('Y','N') DEFAULT 'N',
   `mon_a` enum('Y','N') DEFAULT 'N',
   `tue_m` enum('Y','N') DEFAULT 'N',
@@ -407,7 +467,7 @@ DROP TABLE IF EXISTS `candidate`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `candidate` (
-  `candidate_id` int(11) NOT NULL AUTO_INCREMENT,
+  `candidate_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `full_name` varchar(45) DEFAULT NULL,
   `phone` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
@@ -428,7 +488,7 @@ DROP TABLE IF EXISTS `task`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `task` (
-  `task_id` int(11) NOT NULL AUTO_INCREMENT,
+  `task_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` varchar(45) NOT NULL,
   PRIMARY KEY (`task_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -452,7 +512,7 @@ DROP TABLE IF EXISTS `delivery_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `delivery_group` (
-  `delivery_group_id` int(11) NOT NULL AUTO_INCREMENT,
+  `delivery_group_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`delivery_group_id`)
@@ -477,8 +537,8 @@ DROP TABLE IF EXISTS `delivery_center`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `delivery_center` (
-  `delivery_center_id` int(11) NOT NULL AUTO_INCREMENT,
-  `delivery_group_id` int(11) NOT NULL,
+  `delivery_center_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `delivery_group_id` bigint(20) NOT NULL,
   `name` varchar(45) NOT NULL,
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`delivery_center_id`),
@@ -505,8 +565,8 @@ DROP TABLE IF EXISTS `project`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `project` (
-  `project_id` int(11) NOT NULL AUTO_INCREMENT,
-  `delivery_center_id` int(11) NOT NULL,
+  `project_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `delivery_center_id` bigint(20) NOT NULL,
   `name` varchar(45) NOT NULL,
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`project_id`),
@@ -533,7 +593,7 @@ DROP TABLE IF EXISTS `skill`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `skill` (
-  `skill_id` int(11) NOT NULL AUTO_INCREMENT,
+  `skill_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`skill_id`)
@@ -558,9 +618,9 @@ DROP TABLE IF EXISTS `request`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `request` (
-  `request_id` int(11) NOT NULL AUTO_INCREMENT,
-  `project_id` int(11) NOT NULL,
-  `skill_id` int(11) NOT NULL,
+  `request_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `project_id` bigint(20) NOT NULL,
+  `skill_id` bigint(20) NOT NULL,
   `request_date` date DEFAULT NULL,
   `due_date` date DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
@@ -581,7 +641,7 @@ DROP TABLE IF EXISTS `task_category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `task_category` (
-  `task_category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `task_category_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`task_category_id`)
@@ -606,8 +666,8 @@ DROP TABLE IF EXISTS `task_template`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `task_template` (
-  `task_template_id` int(11) NOT NULL AUTO_INCREMENT,
-  `task_category_id` int(11) NOT NULL,
+  `task_template_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `task_category_id` bigint(20) NOT NULL,
   `name` varchar(45) NOT NULL,
   `estimate` float NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -625,8 +685,8 @@ DROP TABLE IF EXISTS `task_assignment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `task_assignment` (
-  `task_assignment_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
+  `task_assignment_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL,
   `name` varchar(45) NOT NULL,
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`task_assignment_id`),
@@ -643,8 +703,8 @@ DROP TABLE IF EXISTS `task_detail`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `task_detail` (
-  `task_detail_id` int(11) NOT NULL AUTO_INCREMENT,
-  `task_assignment_id` int(11) NOT NULL,
+  `task_detail_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `task_assignment_id` bigint(20) NOT NULL,
   `name` varchar(45) NOT NULL,
   `estimate` float NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -654,36 +714,12 @@ CREATE TABLE `task_detail` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `role`
---
-
-DROP TABLE IF EXISTS `role`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `role` (
-  `role_id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(45) NOT NULL,
-  PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `role`
---
-
-LOCK TABLES `role` WRITE;
-/*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (1,'User'),(2,'Mentor'),(3,'Manager'),(4,'RAC');
-/*!40000 ALTER TABLE `role` ENABLE KEYS */;
-UNLOCK TABLES;
-
 
 DROP TABLE IF EXISTS `csv_candidate`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `csv_candidate` (
-  `csv_candidate_id` int(11) NOT NULL AUTO_INCREMENT,
+  `csv_candidate_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `csv_id` varchar(100) NOT NULL,
   `status` enum('OPEN','REVIEWED') NOT NULL,
   `full_name` varchar(45) DEFAULT NULL,

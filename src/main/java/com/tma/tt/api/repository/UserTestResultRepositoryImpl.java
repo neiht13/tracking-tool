@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class UserTestResultRepositoryImpl extends ResourceRepositoryBase<UserTestResult, Integer> implements UserTestResultRepository {
+public class UserTestResultRepositoryImpl extends ResourceRepositoryBase<UserTestResult, Long> implements UserTestResultRepository {
 
     @Autowired
     private UserTestResultJpaRepository jpaRepository;
@@ -37,7 +37,7 @@ public class UserTestResultRepositoryImpl extends ResourceRepositoryBase<UserTes
     }
 
     @Override
-    public void delete(Integer id){
+    public void delete(Long id){
         UserTestResult obj = jpaRepository.getOne(id);
         jpaRepository.delete(obj);
     }

@@ -18,7 +18,7 @@ public class DeliveryCenter implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="delivery_center_id")
-    private int deliveryCenterId;
+    private Long deliveryCenterId;
 
 	@JsonApiRelation
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -33,11 +33,11 @@ public class DeliveryCenter implements Serializable, Validatable {
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
     private String description;
 
-	public int getDeliveryCenterId() {
+	public Long getDeliveryCenterId() {
 		return deliveryCenterId;
 	}
 
-	public void setDeliveryCenterId(int deliveryCenterId) {
+	public void setDeliveryCenterId(Long deliveryCenterId) {
 		this.deliveryCenterId = deliveryCenterId;
 	}
 

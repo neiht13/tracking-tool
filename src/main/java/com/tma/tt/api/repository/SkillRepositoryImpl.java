@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class SkillRepositoryImpl extends ResourceRepositoryBase<Skill, Integer> implements SkillRepository {
+public class SkillRepositoryImpl extends ResourceRepositoryBase<Skill, Long> implements SkillRepository {
 
     @Autowired
     private SkillJpaRepository jpaRepository;
@@ -37,7 +37,7 @@ public class SkillRepositoryImpl extends ResourceRepositoryBase<Skill, Integer> 
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         Skill obj = jpaRepository.getOne(id);
         this.jpaRepository.delete(obj);
     }

@@ -18,7 +18,7 @@ public class CsvCandidate implements Serializable, Validatable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="csv_candidate_id")
-    private int csvCandidateId;
+    private Long csvCandidateId;
 
     @Basic
     @Column(name = "csv_id", nullable = false, insertable = true, updatable = true, length = 100)
@@ -71,11 +71,11 @@ public class CsvCandidate implements Serializable, Validatable {
     @Transient
     private boolean reviewed;
 
-    public int getCsvCandidateId() {
+    public Long getCsvCandidateId() {
         return csvCandidateId;
     }
 
-    public void setCsvCandidateId(int csvCandidateId) {
+    public void setCsvCandidateId(Long csvCandidateId) {
         this.csvCandidateId = csvCandidateId;
     }
 

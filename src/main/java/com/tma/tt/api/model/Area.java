@@ -27,7 +27,7 @@ public class Area implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="area_id")
-    private int areaId;
+    private Long areaId;
 
 	@JsonApiRelation
     @ManyToOne(fetch = FetchType.LAZY)
@@ -38,11 +38,11 @@ public class Area implements Serializable, Validatable {
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 45)
     private String description;
     
-	public int getAreaId() {
+	public Long getAreaId() {
 		return areaId;
 	}
 
-	public void setAreaId(int areaId) {
+	public void setAreaId(Long areaId) {
 		this.areaId = areaId;
 	}
 

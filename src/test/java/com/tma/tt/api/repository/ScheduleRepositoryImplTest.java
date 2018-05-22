@@ -42,12 +42,12 @@ public class ScheduleRepositoryImplTest {
         QuerySpec spec = new QuerySpec(Schedule.class);
         List<Schedule> schedules = new ArrayList<>();
         Schedule schedule1 = new Schedule();
-        schedule1.setScheduleId(1);
+        schedule1.setScheduleId(1L);
         schedule1.setWeekId("Week-1-2018");
         schedules.add(schedule1);
 
         Schedule schedule2 = new Schedule();
-        schedule2.setScheduleId(2);
+        schedule2.setScheduleId(2L);
         schedule2.setWeekId("Week-2-2018");
         schedules.add(schedule2);
 
@@ -72,7 +72,7 @@ public class ScheduleRepositoryImplTest {
     @Test
     public void testSave(){
         Schedule schedule1 = new Schedule();
-        schedule1.setScheduleId(1);
+        schedule1.setScheduleId(1L);
         schedule1.setWeekId("Week-1-2018");
 
         repository.save(schedule1);
@@ -84,11 +84,11 @@ public class ScheduleRepositoryImplTest {
     @Test
     public void testDelete(){
         Schedule schedule1 = new Schedule();
-        schedule1.setScheduleId(1);
+        schedule1.setScheduleId(1L);
         schedule1.setWeekId("Week-1-2018");
 
-        when(jpaRepository.getOne(1)).thenReturn(schedule1);
-        repository.delete(1);
+        when(jpaRepository.getOne(1L)).thenReturn(schedule1);
+        repository.delete(1L);
 
         ArgumentCaptor<Schedule> areaArgumentCaptor = ArgumentCaptor.forClass(Schedule.class);
         verify(jpaRepository).delete(areaArgumentCaptor.capture());

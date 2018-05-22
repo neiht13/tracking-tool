@@ -17,25 +17,26 @@ public class Role implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="role_id")
-	private int roleId;
+	private Long roleId;
 
+	@Enumerated(EnumType.STRING)
 	@Basic
-	@Column(name = "role_name", nullable = false, insertable = true, updatable = true, length = 45)
-	private String roleName;
+	@Column(name = "name", nullable = false, insertable = true, updatable = true, length = 45)
+	private RoleName name;
 
-	public int getRoleId() {
+	public Long getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(int roleId) {
+	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
 
-	public String getRoleName() {
-		return roleName;
+	public RoleName getName() {
+		return name;
 	}
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public void setName(RoleName name) {
+		this.name = name;
 	}
 }

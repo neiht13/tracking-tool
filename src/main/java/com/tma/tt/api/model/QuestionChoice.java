@@ -20,7 +20,7 @@ public class QuestionChoice implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="choice_id")
-    private int choiceId;
+    private Long choiceId;
 
     @JsonApiRelation
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,11 +39,11 @@ public class QuestionChoice implements Serializable, Validatable {
     @Column(name = "fill_in", nullable = true, insertable = true, updatable = true, length = 255)
     private String fill_in;
 
-    public int getChoiceId() {
+    public Long getChoiceId() {
         return choiceId;
     }
 
-    public void setChoiceId(int choiceId) {
+    public void setChoiceId(Long choiceId) {
         this.choiceId = choiceId;
     }
 

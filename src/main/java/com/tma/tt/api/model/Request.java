@@ -19,7 +19,7 @@ public class Request implements Serializable, Validatable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="request_id")
-    private int requestId;
+    private Long requestId;
 
 	@JsonApiRelation
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -47,11 +47,11 @@ public class Request implements Serializable, Validatable {
     @Column(name = "description", nullable = false, insertable = true, updatable = true)
     private String description;
 
-	public int getRequestId() {
+	public Long getRequestId() {
 		return requestId;
 	}
 
-	public void setRequestId(int requestId) {
+	public void setRequestId(Long requestId) {
 		this.requestId = requestId;
 	}
 

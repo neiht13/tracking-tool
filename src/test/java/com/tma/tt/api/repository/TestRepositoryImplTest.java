@@ -41,14 +41,14 @@ public class TestRepositoryImplTest {
         QuerySpec spec = new QuerySpec(com.tma.tt.api.model.Test.class);
         List<com.tma.tt.api.model.Test> tests = new ArrayList<>();
         com.tma.tt.api.model.Test test1 = new com.tma.tt.api.model.Test();
-        test1.setTestId(1);
+        test1.setTestId(1L);
         test1.setDescription("Test 1");
         test1.setCreateDate(new Date(2018,04,1));
         test1.setLevel(2);
         tests.add(test1);
 
         com.tma.tt.api.model.Test test2 = new com.tma.tt.api.model.Test();
-        test2.setTestId(2);
+        test2.setTestId(2L);
         test2.setDescription("Test 2");
         test2.setCreateDate(new Date(2018,04,1));
         test2.setLevel(2);
@@ -73,7 +73,7 @@ public class TestRepositoryImplTest {
     @Test
     public void testSave(){
         com.tma.tt.api.model.Test test1 = new com.tma.tt.api.model.Test();
-        test1.setTestId(1);
+        test1.setTestId(1L);
         test1.setDescription("Test 1");
         test1.setCreateDate(new Date(2018,04,1));
         test1.setLevel(2);
@@ -87,13 +87,13 @@ public class TestRepositoryImplTest {
     @Test
     public void testDelete() {
         com.tma.tt.api.model.Test test1 = new com.tma.tt.api.model.Test();
-        test1.setTestId(1);
+        test1.setTestId(1L);
         test1.setDescription("Test 1");
         test1.setCreateDate(new Date(2018,04,1));
         test1.setLevel(2);
 
-        when(jpaRepository.getOne(1)).thenReturn(test1);
-        repository.delete(1);
+        when(jpaRepository.getOne(1L)).thenReturn(test1);
+        repository.delete(1L);
 
         ArgumentCaptor<com.tma.tt.api.model.Test> argumentCaptor = ArgumentCaptor.forClass(com.tma.tt.api.model.Test.class);
         verify(jpaRepository).delete(argumentCaptor.capture());

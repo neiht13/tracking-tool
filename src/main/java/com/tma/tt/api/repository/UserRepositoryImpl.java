@@ -1,6 +1,7 @@
 package com.tma.tt.api.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.tma.tt.api.jpa.UserJpaRepository;
@@ -21,6 +22,9 @@ public class UserRepositoryImpl extends ResourceRepositoryBase<User, Long> imple
     @Autowired
     private UserJpaRepository jpaRepository;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     public UserRepositoryImpl() {
         super(User.class);
     }
@@ -35,6 +39,9 @@ public class UserRepositoryImpl extends ResourceRepositoryBase<User, Long> imple
 
     @Override
     public User save(User obj){
+        if (obj.getPassword() != null) {
+            obj.setPassword(passwordEncoder.encode(obj.getPassword()));
+        }
         return jpaRepository.save(obj);
     }
 

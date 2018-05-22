@@ -152,10 +152,11 @@ CREATE TABLE `user` (
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` VALUES
-    (1,'btthuan','$2a$10$J5XpBSu92vN2T6Ra6obMO.95RMHb6CCbwKjxQDq.o.pgkzlPpnGqm','Bui Thanh Thuan'),
-    (2,'nvluong','$2a$10$J5XpBSu92vN2T6Ra6obMO.95RMHb6CCbwKjxQDq.o.pgkzlPpnGqm','Nguyen Van Luong'),
-    (3,'nvtri','$2a$10$J5XpBSu92vN2T6Ra6obMO.95RMHb6CCbwKjxQDq.o.pgkzlPpnGqm','Nguyen Van Tri'),
-    (4,'hvtrung','$2a$10$J5XpBSu92vN2T6Ra6obMO.95RMHb6CCbwKjxQDq.o.pgkzlPpnGqm','Hoang Van Trung');
+    (1,'admin','$2a$10$J5XpBSu92vN2T6Ra6obMO.95RMHb6CCbwKjxQDq.o.pgkzlPpnGqm','Admin'),
+    (2,'btthuan','$2a$10$J5XpBSu92vN2T6Ra6obMO.95RMHb6CCbwKjxQDq.o.pgkzlPpnGqm','Bui Thanh Thuan'),
+    (3,'nvluong','$2a$10$J5XpBSu92vN2T6Ra6obMO.95RMHb6CCbwKjxQDq.o.pgkzlPpnGqm','Nguyen Van Luong'),
+    (4,'nvtri','$2a$10$J5XpBSu92vN2T6Ra6obMO.95RMHb6CCbwKjxQDq.o.pgkzlPpnGqm','Nguyen Van Tri'),
+    (5,'hvtrung','$2a$10$J5XpBSu92vN2T6Ra6obMO.95RMHb6CCbwKjxQDq.o.pgkzlPpnGqm','Hoang Van Trung');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,8 +182,11 @@ CREATE TABLE `role` (
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
 INSERT INTO `role` VALUES
-    (1,'ROLE_USER'),
-    (2,'ROLE_ADMIN');
+    (1,'ADMIN_ROLE'),
+    (2,'DG_ROLE'),
+    (3,'DC_ROLE'),
+    (4,'RAC_ROLE'),
+    (5,'USER_ROLE');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,10 +214,11 @@ CREATE TABLE `user_role` (
 LOCK TABLES `user_role` WRITE;
 INSERT INTO `user_role` VALUES
     (1,1),
-    (2,1),
-    (3,1),
-    (4,1),
-    (4,2);
+    (2,2),
+    (3,3),
+    (4,4),
+    (5,4),
+    (5,5);
 UNLOCK TABLES;
 
 --

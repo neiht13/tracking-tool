@@ -33,6 +33,10 @@ public class TaskDetail implements Serializable, Validatable {
 	@Column(name = "estimate", nullable = false, insertable = true, updatable = true)
 	private float estimate;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status")
+	private TaskStatus status;
+
     @Basic
     @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
     private String description;
@@ -67,6 +71,14 @@ public class TaskDetail implements Serializable, Validatable {
 
 	public void setEstimate(float estimate) {
 		this.estimate = estimate;
+	}
+
+	public TaskStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(TaskStatus status) {
+		this.status = status;
 	}
 
 	public String getDescription() {

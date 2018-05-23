@@ -56,14 +56,16 @@ public class TaskAssignmentRepositoryImpl extends ResourceRepositoryBase<TaskAss
         }
         for(TaskDetail task : tasks) {
             TaskDetail detail = null;
-            if (task.getTaskDetailId() != 0) {
-                detail = jpaTaskDetailRepository.getOne(task.getTaskDetailId());
+            Long id = task.getTaskDetailId();
+            if (id != null && id != 0) {
+                detail = jpaTaskDetailRepository.getOne(id);
             } else {
                 detail = new TaskDetail();
                 detail.setTaskAssignment(assignment);
             }
             detail.setName(task.getName());
             detail.setEstimate(task.getEstimate());
+            detail.setStatus(task.getStatus());
             detail.setDescription(task.getDescription());
             jpaTaskDetailRepository.save(detail);
         }

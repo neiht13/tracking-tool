@@ -714,6 +714,7 @@ CREATE TABLE `task_detail` (
   `task_assignment_id` bigint(20) NOT NULL,
   `name` varchar(45) NOT NULL,
   `estimate` float NOT NULL,
+  `status` enum('TODO','DOING','DONE') NOT NULL,
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`task_detail_id`),
   KEY `fk_task_assignment_idx` (`task_assignment_id`),

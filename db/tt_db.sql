@@ -85,7 +85,7 @@ CREATE TABLE `question` (
   PRIMARY KEY (`question_id`),
   KEY `fk_area_idx` (`area_id`),
   CONSTRAINT `fk_area` FOREIGN KEY (`area_id`) REFERENCES `area` (`area_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `question` (
 
 LOCK TABLES `question` WRITE;
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
-INSERT INTO `question` VALUES (1,1,'Which are the modules of core container?','ACTIVE','SINGLE_CHOICE'),(2,1,'What types of Dependency injection does spring supports?','ACTIVE','MULTI_CHOICE'),(3,1,'What is prototype scope?','INACTIVE','FILL_IN');
+INSERT INTO `question` VALUES (1,1,'Which are the modules of core container?','ACTIVE','SINGLE_CHOICE'),(2,1,'What types of Dependency injection does spring supports?','ACTIVE','MULTI_CHOICE'),(3,1,'What is prototype scope?','ACTIVE','MULTI_CHOICE'),(4,1,'What is AOP?','ACTIVE','FILL_IN');
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,13 +108,13 @@ DROP TABLE IF EXISTS `question_choice`;
 CREATE TABLE `question_choice` (
   `choice_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `question_id` bigint(20) NOT NULL,
-  `description` varchar(255) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
   `corrected` enum('Y','N') NOT NULL,
   `fill_in` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`choice_id`),
   KEY `fk_question_idx` (`question_id`),
   CONSTRAINT `fk_question` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +123,7 @@ CREATE TABLE `question_choice` (
 
 LOCK TABLES `question_choice` WRITE;
 /*!40000 ALTER TABLE `question_choice` DISABLE KEYS */;
-INSERT INTO `question_choice` VALUES (1,1,'Beans, Core, Context, SpEL','Y', NULL ),(2,1,'Core, Context, ORM, Web','N', NULL ),(3,1,'Core, Context, Aspects, Test','N', NULL ),(4,1,'Bean, Core, Context, Test','N', NULL ),(5,2,'Constructor based, Setter based','Y', NULL ),(6,2,'Constructor based, Setter based, Getter Based','N', NULL ),(7,2,'Setter based, Getter based, Properties based','N', NULL ),(8,2,'Constructor based, Setter based, Properties based','N', NULL ),(9,3,'This scopes a single bean definition to have any number of object instances.','Y', NULL ),(10,3,'This scopes the bean definition to a single instance per HTTP Request.','N', NULL ),(11,3,'This scopes the bean definition to a single instance per HTTP Session.','N', NULL ),(12,3,'This scopes the bean definition to a single instance per HTTP Application/ Global session.','N', NULL );
+INSERT INTO `question_choice` VALUES (1,1,'Beans, Core, Context, SpEL','Y',NULL),(2,1,'Core, Context, ORM, Web','N',NULL),(3,1,'Core, Context, Aspects, Test','N',NULL),(4,1,'Bean, Core, Context, Test','N',NULL),(5,2,'Constructor based, Setter based','Y',NULL),(6,2,'Constructor based, Setter based, Getter Based','N',NULL),(7,2,'Setter based, Getter based, Properties based','Y',NULL),(8,2,'Constructor based, Setter based, Properties based','N',NULL),(9,3,'This scopes a single bean definition to have any number of object instances.','N',NULL),(10,3,'This scopes the bean definition to a single instance per HTTP Request.','Y',NULL),(11,3,'This scopes the bean definition to a single instance per HTTP Session.','Y',NULL),(12,3,'This scopes the bean definition to a single instance per HTTP Application/ Global session.','N',NULL),(13,4,NULL,'Y','Aspect Oriented Programming');
 /*!40000 ALTER TABLE `question_choice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -302,7 +302,7 @@ CREATE TABLE `test_detail` (
 
 LOCK TABLES `test_detail` WRITE;
 /*!40000 ALTER TABLE `test_detail` DISABLE KEYS */;
-INSERT INTO `test_detail` VALUES (2,1),(1,2),(2,2),(1,3);
+INSERT INTO `test_detail` VALUES (1,1),(2,1),(2,2),(1,3),(2,3),(1,4),(2,4);
 /*!40000 ALTER TABLE `test_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -333,7 +333,7 @@ CREATE TABLE `user_test` (
 
 LOCK TABLES `user_test` WRITE;
 /*!40000 ALTER TABLE `user_test` DISABLE KEYS */;
-INSERT INTO `user_test` VALUES (1,1,2,0,'2018-04-11 00:00:00'),(2,1,3,0,NULL),(3,2,1,2,'2018-04-13 00:00:00'),(4,2,2,0,NULL);
+INSERT INTO `user_test` VALUES (1,1,2,0,NULL),(2,1,1,0,NULL),(3,2,1,0,NULL),(4,3,2,0,NULL);
 /*!40000 ALTER TABLE `user_test` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -345,7 +345,7 @@ DROP TABLE IF EXISTS `user_test_result`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_test_result` (
-  `user_test_result_id` bigint(20) NOT NULL,
+  `user_test_result_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_test_id` bigint(20) DEFAULT NULL,
   `question_id` bigint(20) NOT NULL,
   `choice_id` bigint(20) NOT NULL,
@@ -367,7 +367,6 @@ CREATE TABLE `user_test_result` (
 
 LOCK TABLES `user_test_result` WRITE;
 /*!40000 ALTER TABLE `user_test_result` DISABLE KEYS */;
-INSERT INTO `user_test_result` VALUES (1,1,2,5,NULL,'Y'),(2,1,2,6,NULL,'N'),(3,1,3,9,NULL,'Y');
 /*!40000 ALTER TABLE `user_test_result` ENABLE KEYS */;
 UNLOCK TABLES;
 

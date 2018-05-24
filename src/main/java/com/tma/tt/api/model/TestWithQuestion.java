@@ -16,18 +16,18 @@ import java.util.Set;
 public class TestWithQuestion implements Serializable, Validatable {
 	private static final long serialVersionUID = 1L;
 
-    private Test test;
+    private UserTest userTest;
     private Set<TestQuestion> testQuestions;
 
     public TestWithQuestion() {
-        test = new Test();
+        userTest = new UserTest();
     }
 
-    public TestWithQuestion(Test test) {
-        this.test = test;
-        if (test != null){
-            testQuestions = new LinkedHashSet<>(test.getTestDetails().size());
-            for (TestDetail td : test.getTestDetails()) {
+    public TestWithQuestion(UserTest userTest) {
+        this.userTest = userTest;
+        if (userTest.getTest() != null){
+            testQuestions = new LinkedHashSet<>(userTest.getTest().getTestDetails().size());
+            for (TestDetail td : userTest.getTest().getTestDetails()) {
                 TestQuestion testQues = new TestQuestion();
                 testQues.setId(td.getQuestion().getQuestionId());
                 testQues.setDescription(td.getQuestion().getDescription());
@@ -52,20 +52,20 @@ public class TestWithQuestion implements Serializable, Validatable {
 
     @JsonApiId
     public Long getId() {
-        return test.getTestId();
+        return userTest.getUserTestId();
     }
 
     public void setId(Long id) {
-        this.test.setTestId(id);
+        this.userTest.setUserTestId(id);
     }
 
     @JsonIgnore
-    public Test getTest() {
-        return test;
+    public UserTest getUserTest() {
+        return userTest;
     }
 
-    public void setTest(Test test) {
-        this.test = test;
+    public void setUserTest(UserTest userTest) {
+        this.userTest = userTest;
     }
 
 //    @JsonFilter("serializeAll")

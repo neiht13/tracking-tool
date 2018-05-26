@@ -285,6 +285,18 @@ CREATE TABLE `role_function` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `role_function`
+--
+
+LOCK TABLES `role_function` WRITE;
+/*!40000 ALTER TABLE `role_function` DISABLE KEYS */;
+INSERT INTO `role_function` VALUES
+    ('USER_ROLE', 'USER_CHANGE_PASSWORD'),
+    ('USER_ROLE', 'TEST_EXECUTION');
+/*!40000 ALTER TABLE `role_function` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `test`
 --
 

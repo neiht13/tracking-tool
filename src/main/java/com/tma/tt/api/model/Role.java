@@ -2,10 +2,13 @@ package com.tma.tt.api.model;
 
 import com.tma.tt.api.common.Validatable;
 import io.katharsis.resource.annotations.JsonApiId;
+import io.katharsis.resource.annotations.JsonApiRelation;
 import io.katharsis.resource.annotations.JsonApiResource;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @JsonApiResource(type = "roles")
 @Entity
@@ -23,6 +26,13 @@ public class Role implements Serializable, Validatable {
 	@Column(name = "name", nullable = false, insertable = true, updatable = true, length = 45)
 	private String name;
 
+	@JsonApiRelation
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "role_function",
+			joinColumns = @JoinColumn(name = "role_id"),
+			inverseJoinColumns = @JoinColumn(name = "function_id"))
+	private Set<Function> functions = new HashSet<>();
+
 	public RoleEnum getRoleId() {
 		return roleId;
 	}
@@ -37,5 +47,13 @@ public class Role implements Serializable, Validatable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Set<Function> getFunctions() {
+		return functions;
+	}
+
+	public void setFunctions(Set<Function> functions) {
+		this.functions = functions;
 	}
 }

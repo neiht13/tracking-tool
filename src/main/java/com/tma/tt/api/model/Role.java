@@ -15,28 +15,27 @@ public class Role implements Serializable, Validatable {
 
 	@JsonApiId
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="role_id")
-	private Long roleId;
-
 	@Enumerated(EnumType.STRING)
+	@Column(name="role_id")
+	private RoleEnum roleId;
+
 	@Basic
 	@Column(name = "name", nullable = false, insertable = true, updatable = true, length = 45)
-	private RoleName name;
+	private String name;
 
-	public Long getRoleId() {
+	public RoleEnum getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(Long roleId) {
+	public void setRoleId(RoleEnum roleId) {
 		this.roleId = roleId;
 	}
 
-	public RoleName getName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setName(RoleName name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 }

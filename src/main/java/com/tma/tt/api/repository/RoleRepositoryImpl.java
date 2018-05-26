@@ -2,6 +2,7 @@ package com.tma.tt.api.repository;
 
 import com.tma.tt.api.jpa.RoleJpaRepository;
 import com.tma.tt.api.model.Role;
+import com.tma.tt.api.model.RoleEnum;
 import io.katharsis.queryspec.QuerySpec;
 import io.katharsis.repository.ResourceRepositoryBase;
 import io.katharsis.resource.links.DefaultPagedLinksInformation;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class RoleRepositoryImpl extends ResourceRepositoryBase<Role, Long> implements RoleRepository {
+public class RoleRepositoryImpl extends ResourceRepositoryBase<Role, RoleEnum> implements RoleRepository {
 
     @Autowired
     private RoleJpaRepository jpaRepository;
@@ -31,13 +32,4 @@ public class RoleRepositoryImpl extends ResourceRepositoryBase<Role, Long> imple
         return list;
 	}
 
-	@Override
-    public Role save(Role obj){
-        return jpaRepository.save(obj);
-    }
-
-    @Override
-    public void delete(Long id){
-        Role obj = jpaRepository.getOne(id);
-        this.jpaRepository.delete(obj);    }
 }

@@ -168,10 +168,9 @@ DROP TABLE IF EXISTS `role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `role` (
-  `role_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(60) NOT NULL,
-  PRIMARY KEY (`role_id`),
-  UNIQUE KEY `uk_role_name` (`name`)
+  `role_id` varchar(50) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -182,12 +181,12 @@ CREATE TABLE `role` (
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
 INSERT INTO `role` VALUES
-    (1,'ADMIN_ROLE'),
-    (2,'DG_ROLE'),
-    (3,'DC_ROLE'),
-    (4,'RAC_ROLE'),
-    (5,'MENTOR_ROLE'),
-    (6,'USER_ROLE');
+    ('ADMIN_ROLE', 'ADMIN_ROLE'),
+    ('DG_ROLE', 'DG_ROLE'),
+    ('DC_ROLE', 'DC_ROLE'),
+    ('RAC_ROLE', 'RAC_ROLE'),
+    ('MENTOR_ROLE', 'MENTOR_ROLE'),
+    ('USER_ROLE', 'USER_ROLE');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,7 +199,7 @@ DROP TABLE IF EXISTS `user_role`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_role` (
   `user_id` bigint(20) NOT NULL,
-  `role_id` bigint(20) NOT NULL,
+  `role_id` varchar(50) NOT NULL,
   PRIMARY KEY (`user_id`,`role_id`),
   KEY `fk_user_role_role_id_idx` (`role_id`),
   CONSTRAINT `fk_user_role_role_id` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`),
@@ -214,14 +213,76 @@ CREATE TABLE `user_role` (
 
 LOCK TABLES `user_role` WRITE;
 INSERT INTO `user_role` VALUES
-    (1,1),
-    (2,2),
-    (3,3),
-    (4,4),
-    (5,4),
-    (5,5),
-    (5,6);
+    (1,'ADMIN_ROLE'),
+    (2,'DG_ROLE'),
+    (3,'DC_ROLE'),
+    (4,'RAC_ROLE'),
+    (5,'RAC_ROLE'),
+    (5,'MENTOR_ROLE'),
+    (5,'USER_ROLE');
 UNLOCK TABLES;
+
+--
+-- Table structure for table `function`
+--
+
+DROP TABLE IF EXISTS `function`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `function` (
+  `function_id` varchar(50) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`function_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `function`
+--
+
+LOCK TABLES `function` WRITE;
+/*!40000 ALTER TABLE `function` DISABLE KEYS */;
+INSERT INTO `function` VALUES
+    ('USER', 'USER'),
+    ('USER_CHANGE_PASSWORD', 'USER_CHANGE_PASSWORD'),
+    ('SUBJECT', 'SUBJECT'),
+    ('AREA', 'AREA'),
+    ('QUESTION_UPLOAD', 'QUESTION_UPLOAD'),
+    ('TEST_DESIGN', 'TEST_DESIGN'),
+    ('TEST_ASSIGNMENT', 'TEST_ASSIGNMENT'),
+    ('TEST_EXECUTION', 'TEST_EXECUTION'),
+    ('SCHEDULE', 'SCHEDULE'),
+    ('SCHEDULE_REPORT', 'SCHEDULE_REPORT'),
+    ('DELIVERY_GROUP', 'DELIVERY_GROUP'),
+    ('DELIVERY_CENTER', 'DELIVERY_CENTER'),
+    ('PROJECT', 'PROJECT'),
+    ('SKILL', 'SKILL'),
+    ('REQUEST', 'REQUEST'),
+    ('CANDIDATE', 'CANDIDATE'),
+    ('CANDIDATE_UPLOAD', 'CANDIDATE_UPLOAD'),
+    ('TASK_CATEGORY', 'TASK_CATEGORY'),
+    ('TASK_TEMPLATE', 'TASK_TEMPLATE'),
+    ('TASK_ASSIGNMENT', 'TASK_ASSIGNMENT'),
+    ('TASK_REPORT', 'TASK_REPORT');
+/*!40000 ALTER TABLE `function` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role_function`
+--
+
+DROP TABLE IF EXISTS `role_function`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `role_function` (
+  `role_id` varchar(50) NOT NULL,
+  `function_id` varchar(50) NOT NULL,
+  PRIMARY KEY (`role_id`,`function_id`),
+  KEY `fk_role_function_function_id_idx` (`function_id`),
+  CONSTRAINT `fk_role_function_function_id` FOREIGN KEY (`function_id`) REFERENCES `function` (`function_id`),
+  CONSTRAINT `fk_role_function_role_id` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `test`

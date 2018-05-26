@@ -1,6 +1,6 @@
 package com.tma.tt.api.model;
 
-public enum RoleName {
+public enum RoleEnum {
     ADMIN_ROLE,
     DG_ROLE,
     DC_ROLE,

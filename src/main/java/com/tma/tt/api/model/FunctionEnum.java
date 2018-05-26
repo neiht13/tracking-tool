@@ -1,0 +1,25 @@
+package com.tma.tt.api.model;
+
+public enum FunctionEnum {
+    USER,
+    USER_CHANGE_PASSWORD,
+    SUBJECT,
+    AREA,
+    QUESTION_UPLOAD,
+    TEST_DESIGN,
+    TEST_ASSIGNMENT,
+    TEST_EXECUTION,
+    SCHEDULE,
+    SCHEDULE_REPORT,
+    DELIVERY_GROUP,
+    DELIVERY_CENTER,
+    PROJECT,
+    SKILL,
+    REQUEST,
+    CANDIDATE,
+    CANDIDATE_UPLOAD,
+    TASK_CATEGORY,
+    TASK_TEMPLATE,
+    TASK_ASSIGNMENT,
+    TASK_REPORT
+}

@@ -2,7 +2,9 @@ package com.tma.tt.api.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -42,6 +44,13 @@ public class Test implements Serializable, Validatable {
     @Column(name = "create_date", nullable = true, insertable = true, updatable = true)
     private Date createDate;
 
+    @JsonApiRelation
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "test_detail",
+            joinColumns = @JoinColumn(name = "test_id"),
+            inverseJoinColumns = @JoinColumn(name = "question_id"))
+    private Set<Question> questions = new HashSet<>();
+
     public Long getTestId() {
         return testId;
     }
@@ -80,5 +89,13 @@ public class Test implements Serializable, Validatable {
 
     public void setTestDetails(List<TestDetail> testDetails) {
         this.testDetails = testDetails;
+    }
+
+    public Set<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(Set<Question> questions) {
+        this.questions = questions;
     }
 }

@@ -41,6 +41,10 @@ public class Test implements Serializable, Validatable {
     private int level;
 
     @Basic
+    @Column(name = "score_minimum", nullable = false, insertable = true, updatable = true, length = 11)
+    private int scoreMinimum;
+
+    @Basic
     @Column(name = "create_date", nullable = true, insertable = true, updatable = true)
     private Date createDate;
 
@@ -73,6 +77,14 @@ public class Test implements Serializable, Validatable {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public int getScoreMinimum() {
+        return scoreMinimum;
+    }
+
+    public void setScoreMinimum(int scoreMinimum) {
+        this.scoreMinimum = scoreMinimum;
     }
 
     public Date getCreateDate() {

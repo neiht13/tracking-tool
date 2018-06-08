@@ -308,10 +308,11 @@ DROP TABLE IF EXISTS `test`;
 CREATE TABLE `test` (
   `test_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` varchar(45) NOT NULL,
-  `level` bigint(20) NOT NULL,
+  `level` int(11) NOT NULL DEFAULT '1',
+  `score_minimum` int(11) NOT NULL DEFAULT '1',
   `create_date` datetime DEFAULT NULL,
   PRIMARY KEY (`test_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -320,7 +321,7 @@ CREATE TABLE `test` (
 
 LOCK TABLES `test` WRITE;
 /*!40000 ALTER TABLE `test` DISABLE KEYS */;
-INSERT INTO `test` VALUES (1,'Spring framework',1,'2018-04-06 00:00:00'),(2,'Spring boot',1,'2018-04-07 00:00:00'),(3,'Spring MVC',1,'2018-04-08 00:00:00');
+INSERT INTO `test` VALUES (1,'Spring framework',1,1,'2018-04-06 00:00:00'),(2,'Spring boot',1,1,'2018-04-07 00:00:00'),(3,'Spring MVC',1,1,'2018-04-08 00:00:00');
 /*!40000 ALTER TABLE `test` ENABLE KEYS */;
 UNLOCK TABLES;
 

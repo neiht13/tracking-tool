@@ -8,16 +8,14 @@ import io.katharsis.resource.annotations.JsonApiResource;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 @JsonApiResource(type = "test-w-question")
 public class TestWithQuestion implements Serializable, Validatable {
 	private static final long serialVersionUID = 1L;
 
     private UserTest userTest;
-    private Set<TestQuestion> testQuestions;
+    private List<QuestionWithChoice> questionWithChoices;
 
     public TestWithQuestion() {
         userTest = new UserTest();
@@ -26,14 +24,14 @@ public class TestWithQuestion implements Serializable, Validatable {
     public TestWithQuestion(UserTest userTest) {
         this.userTest = userTest;
         if (userTest.getTest() != null){
-            testQuestions = new LinkedHashSet<>(userTest.getTest().getTestDetails().size());
+            questionWithChoices = new ArrayList<>();
             for (TestDetail td : userTest.getTest().getTestDetails()) {
-                TestQuestion testQues = new TestQuestion();
-                testQues.setId(td.getQuestion().getQuestionId());
-                testQues.setDescription(td.getQuestion().getDescription());
-                testQues.setType(td.getQuestion().getType());
+                QuestionWithChoice questionWithChoice = new QuestionWithChoice();
+                questionWithChoice.setId(td.getQuestion().getQuestionId());
+                questionWithChoice.setDescription(td.getQuestion().getDescription());
+                questionWithChoice.setType(td.getQuestion().getType());
 
-                Set<Choice> choices = new HashSet<>();
+                List<Choice> choices = new ArrayList<>();
                 if (td.getQuestion().getQuestionChoices() != null ) {
                     td.getQuestion().getQuestionChoices().forEach( qc -> {
                         Choice choice = new Choice();
@@ -44,8 +42,8 @@ public class TestWithQuestion implements Serializable, Validatable {
                     });
                 }
 
-                testQues.setChoices(choices);
-                testQuestions.add(testQues);
+                questionWithChoice.setChoices(choices);
+                questionWithChoices.add(questionWithChoice);
             }
         }
     }
@@ -68,23 +66,22 @@ public class TestWithQuestion implements Serializable, Validatable {
         this.userTest = userTest;
     }
 
-//    @JsonFilter("serializeAll")
-    public Set<TestQuestion> getTestQuestions() {
-        return testQuestions;
+    public List<QuestionWithChoice> getQuestionWithChoices() {
+        return questionWithChoices;
     }
 
-    public void setTestQuestions(Set<TestQuestion> testQuestions) {
-        this.testQuestions = testQuestions;
+    public void setQuestionWithChoices(List<QuestionWithChoice> questionWithChoices) {
+        this.questionWithChoices = questionWithChoices;
     }
 
-    public static class TestQuestion {
+    public static class QuestionWithChoice {
         private Long id;
 
         @Enumerated(EnumType.STRING)
         private QuestionType type;
 
         private String description;
-        private Set<Choice> choices;
+        private List<Choice> choices;
 
         public Long getId() {
             return id;
@@ -102,12 +99,11 @@ public class TestWithQuestion implements Serializable, Validatable {
             this.description = description;
         }
 
-//        @JsonFilter("serializeAll")
-        public Set<Choice> getChoices() {
+        public List<Choice> getChoices() {
             return choices;
         }
 
-        public void setChoices(Set<Choice> choices) {
+        public void setChoices(List<Choice> choices) {
             this.choices = choices;
         }
 

@@ -8,10 +8,7 @@ import io.katharsis.resource.annotations.JsonApiResource;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @JsonApiResource(type = "question-area")
 public class QuestionInArea implements Serializable, Validatable {
@@ -19,13 +16,13 @@ public class QuestionInArea implements Serializable, Validatable {
 
     private Area area;
     private List<Question> questions;
-    private Set<QuestionWithChoice> questionWithChoices;
+    private List<QuestionWithChoice> questionWithChoices;
 
     public QuestionInArea(List<Question> questions, Area area){
         this.questions = questions;
         this.area = area;
 
-        questionWithChoices = new LinkedHashSet<>(questions.size());
+        questionWithChoices = new ArrayList<>();
 
         for(Question q: questions){
             if(q.getArea().getAreaId().equals(area.getAreaId())){
@@ -34,7 +31,7 @@ public class QuestionInArea implements Serializable, Validatable {
                 questionWithChoice.setDescription(q.getDescription());
                 questionWithChoice.setType(q.getType());
 
-                Set<Choice> choices = new HashSet<>();
+                List<Choice> choices = new ArrayList<>();
                 if (q.getQuestionChoices() != null ) {
                     q.getQuestionChoices().forEach( qc -> {
                         Choice choice = new Choice();
@@ -78,11 +75,11 @@ public class QuestionInArea implements Serializable, Validatable {
         this.questions = questions;
     }
 
-    public Set<QuestionWithChoice> getQuestionWithChoices() {
+    public List<QuestionWithChoice> getQuestionWithChoices() {
         return questionWithChoices;
     }
 
-    public void setQuestionWithChoices(Set<QuestionWithChoice> questionWithChoices) {
+    public void setQuestionWithChoices(List<QuestionWithChoice> questionWithChoices) {
         this.questionWithChoices = questionWithChoices;
     }
 
@@ -93,7 +90,7 @@ public class QuestionInArea implements Serializable, Validatable {
         private QuestionType type;
 
         private String description;
-        private Set<Choice> choices;
+        private List<Choice> choices;
 
         public Long getId() {
             return id;
@@ -111,11 +108,11 @@ public class QuestionInArea implements Serializable, Validatable {
             this.description = description;
         }
 
-        public Set<Choice> getChoices() {
+        public List<Choice> getChoices() {
             return choices;
         }
 
-        public void setChoices(Set<Choice> choices) {
+        public void setChoices(List<Choice> choices) {
             this.choices = choices;
         }
 

@@ -28,7 +28,7 @@ public class QuestionChoice implements Serializable, Validatable {
     private Question question;
     
     @Basic
-    @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 255)
+    @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 500)
     private String description;
 
     @Enumerated(EnumType.STRING)

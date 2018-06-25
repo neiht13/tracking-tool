@@ -58,6 +58,7 @@ public class TestWithQuestionRepositoryImpl extends ResourceRepositoryBase<TestW
                 YesNoFlag corrected = YesNoFlag.Y;
 
                 for (TestWithQuestion.Choice c : tq.getChoices()) {
+                    QuestionChoice questionChoice = questionChoiceJpaRepository.getOne(c.getId());
                     switch (tq.getType()) {
                         case MULTI_CHOICE:
                         case SINGLE_CHOICE:
@@ -65,9 +66,6 @@ public class TestWithQuestionRepositoryImpl extends ResourceRepositoryBase<TestW
                                 UserTestResult userTestResult = new UserTestResult();
                                 userTestResult.setUserTest(userTest);
                                 userTestResult.setQuestion(question);
-
-                                QuestionChoice questionChoice = questionChoiceJpaRepository.getOne(c.getId());
-
                                 userTestResult.setQuestionChoice(questionChoice);
                                 userTestResult.setCorrected(questionChoice.getCorrected());
 
@@ -76,6 +74,10 @@ public class TestWithQuestionRepositoryImpl extends ResourceRepositoryBase<TestW
                                 }
 
                                 userTestResultJpaRepository.save(userTestResult);
+                            } else {
+                                if(questionChoice.getCorrected() == YesNoFlag.Y) {
+                                    corrected = YesNoFlag.N;
+                                }
                             }
                             break;
 
@@ -83,14 +85,8 @@ public class TestWithQuestionRepositoryImpl extends ResourceRepositoryBase<TestW
                             UserTestResult userTestResult = new UserTestResult();
                             userTestResult.setUserTest(userTest);
                             userTestResult.setQuestion(question);
-
-                            QuestionChoice questionChoice = questionChoiceJpaRepository.getOne(c.getId());
-
-                            QuestionChoice userChoice = new QuestionChoice();
-                            userChoice.setChoiceId(c.getId());
-
                             userTestResult.setFill_in(c.getSelected());
-                            userTestResult.setQuestionChoice(userChoice);
+                            userTestResult.setQuestionChoice(questionChoice);
 
                             if(! questionChoice.getFill_in().equalsIgnoreCase(c.getSelected())) {
                                 corrected = YesNoFlag.N;

@@ -41,6 +41,10 @@ public class UserTest implements Serializable, Validatable {
     @Column(name = "test_date", nullable = true, insertable = true, updatable = true)
     private Date testDate;
 
+    @Basic
+    @Column(name = "duration", nullable = true, insertable = true, updatable = true)
+    private int duration;
+
     public Long getUserTestId() {
         return userTestId;
     }
@@ -79,5 +83,13 @@ public class UserTest implements Serializable, Validatable {
 
     public void setTestDate(Date testDate) {
         this.testDate = testDate;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }

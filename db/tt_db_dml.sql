@@ -181,9 +181,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user_test` WRITE;
 /*!40000 ALTER TABLE `user_test` DISABLE KEYS */;
-INSERT INTO `user_test` VALUES 
-	(1,2,1,0,NULL),
-	(2,3,2,0,NULL);
+INSERT INTO `user_test` VALUES (1,2,1,0,NULL,0),(3,3,10,0,NULL,0);
 /*!40000 ALTER TABLE `user_test` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1753,9 +1751,5 @@ INSERT INTO `question_choice` (question_id, description, corrected) VALUES (@que
 -- Dumping data for table `test_detail`
 --
 
-LOCK TABLES `test_detail` WRITE;
-/*!40000 ALTER TABLE `test_detail` DISABLE KEYS */;
-INSERT INTO `test_detail` SELECT area_id, question_id FROM `question`
-/*!40000 ALTER TABLE `test_detail` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `test_detail` SELECT area_id, question_id FROM `question`;
 

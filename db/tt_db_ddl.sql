@@ -245,12 +245,13 @@ CREATE TABLE `user_test` (
   `test_id` bigint(20) NOT NULL,
   `score` int(11) DEFAULT NULL,
   `test_date` datetime DEFAULT NULL,
+  `duration` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_test_id`),
   KEY `fk_user` (`user_id`),
   KEY `fk_test_id_idx` (`test_id`),
   CONSTRAINT `fk_test_id` FOREIGN KEY (`test_id`) REFERENCES `test` (`test_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 

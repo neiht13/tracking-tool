@@ -187,6 +187,7 @@ CREATE TABLE `test` (
   `description` varchar(45) NOT NULL,
   `level` int(11) NOT NULL DEFAULT '1',
   `score_minimum` int(11) NOT NULL DEFAULT '1',
+  `duration` int(11) NOT NULL DEFAULT '1',
   `create_date` datetime DEFAULT NULL,
   PRIMARY KEY (`test_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -243,9 +244,9 @@ CREATE TABLE `user_test` (
   `user_test_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,
   `test_id` bigint(20) NOT NULL,
-  `score` int(11) DEFAULT NULL,
+  `score` int(11) NOT NULL DEFAULT '0',
+  `time_taken` int(11) NOT NULL DEFAULT '0',
   `test_date` datetime DEFAULT NULL,
-  `duration` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_test_id`),
   KEY `fk_user` (`user_id`),
   KEY `fk_test_id_idx` (`test_id`),

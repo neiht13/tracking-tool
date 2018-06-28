@@ -48,6 +48,7 @@ public class TestWithQuestionRepositoryImpl extends ResourceRepositoryBase<TestW
     public TestWithQuestion save(TestWithQuestion testWithQuestion){
         UserTest userTest = testWithQuestion.getUserTest();
         userTest.setUserTestId(testWithQuestion.getId().longValue());
+        userTest.setTimeTaken(testWithQuestion.getTimeTaken());
         if(testWithQuestion.getQuestionWithChoices() != null){
             int score = 0;
             for (TestWithQuestion.QuestionWithChoice tq : testWithQuestion.getQuestionWithChoices()){

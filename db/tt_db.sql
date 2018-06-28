@@ -1,4 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `tt_db` /*!40100 DEFAULT CHARACTER SET utf8 */;
+DROP DATABASE IF EXISTS `tt_db`;
+CREATE DATABASE `tt_db` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `tt_db`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
@@ -310,6 +311,7 @@ CREATE TABLE `test` (
   `description` varchar(45) NOT NULL,
   `level` int(11) NOT NULL DEFAULT '1',
   `score_minimum` int(11) NOT NULL DEFAULT '1',
+  `duration` int(11) NOT NULL DEFAULT '1',
   `create_date` datetime DEFAULT NULL,
   PRIMARY KEY (`test_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -321,7 +323,7 @@ CREATE TABLE `test` (
 
 LOCK TABLES `test` WRITE;
 /*!40000 ALTER TABLE `test` DISABLE KEYS */;
-INSERT INTO `test` VALUES (1,'Spring framework',1,1,'2018-04-06 00:00:00'),(2,'Spring boot',1,1,'2018-04-07 00:00:00'),(3,'Spring MVC',1,1,'2018-04-08 00:00:00');
+INSERT INTO `test` VALUES (1,'Spring framework',1,1,11,'2018-04-06 00:00:00'),(2,'Spring boot',1,1,12,'2018-04-07 00:00:00'),(3,'Spring MVC',1,1,13,'2018-04-08 00:00:00');
 /*!40000 ALTER TABLE `test` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -393,7 +395,8 @@ CREATE TABLE `user_test` (
   `user_test_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,
   `test_id` bigint(20) NOT NULL,
-  `score` int(11) DEFAULT NULL,
+  `score` int(11) NOT NULL DEFAULT '0',
+  `time_taken` int(11) NOT NULL DEFAULT '0',
   `test_date` datetime DEFAULT NULL,
   PRIMARY KEY (`user_test_id`),
   KEY `fk_user` (`user_id`),
@@ -409,7 +412,7 @@ CREATE TABLE `user_test` (
 
 LOCK TABLES `user_test` WRITE;
 /*!40000 ALTER TABLE `user_test` DISABLE KEYS */;
-INSERT INTO `user_test` VALUES (1,1,2,0,NULL),(2,1,1,0,NULL),(3,2,1,0,NULL),(4,3,2,0,NULL);
+INSERT INTO `user_test` VALUES (1,1,2,0,0,NULL),(2,1,1,0,0,NULL),(3,2,1,0,0,NULL),(4,3,2,0,0,NULL);
 /*!40000 ALTER TABLE `user_test` ENABLE KEYS */;
 UNLOCK TABLES;
 

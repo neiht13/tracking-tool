@@ -16,6 +16,8 @@ public class TestWithQuestion implements Serializable, Validatable {
 
     private UserTest userTest;
     private List<QuestionWithChoice> questionWithChoices;
+    private int duration;
+    private int timeTaken;
 
     public TestWithQuestion() {
         userTest = new UserTest();
@@ -24,6 +26,7 @@ public class TestWithQuestion implements Serializable, Validatable {
     public TestWithQuestion(UserTest userTest) {
         this.userTest = userTest;
         if (userTest.getTest() != null){
+            this.setDuration(userTest.getTest().getDuration());
             questionWithChoices = new ArrayList<>();
             for (TestDetail td : userTest.getTest().getTestDetails()) {
                 QuestionWithChoice questionWithChoice = new QuestionWithChoice();
@@ -72,6 +75,22 @@ public class TestWithQuestion implements Serializable, Validatable {
 
     public void setQuestionWithChoices(List<QuestionWithChoice> questionWithChoices) {
         this.questionWithChoices = questionWithChoices;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public int getTimeTaken() {
+        return timeTaken;
+    }
+
+    public void setTimeTaken(int timeTaken) {
+        this.timeTaken = timeTaken;
     }
 
     public static class QuestionWithChoice {

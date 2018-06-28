@@ -34,16 +34,16 @@ public class UserTest implements Serializable, Validatable {
     private Test test;
 
     @Basic
-    @Column(name = "score", nullable = true, insertable = true, updatable = true)
+    @Column(name = "score", nullable = false, insertable = true, updatable = true)
     private int score;
+
+    @Basic
+    @Column(name = "time_taken", nullable = false, insertable = true, updatable = true)
+    private int timeTaken;
 
     @Basic
     @Column(name = "test_date", nullable = true, insertable = true, updatable = true)
     private Date testDate;
-
-    @Basic
-    @Column(name = "duration", nullable = true, insertable = true, updatable = true)
-    private int duration;
 
     public Long getUserTestId() {
         return userTestId;
@@ -77,19 +77,19 @@ public class UserTest implements Serializable, Validatable {
         this.score = score;
     }
 
+    public int getTimeTaken() {
+        return timeTaken;
+    }
+
+    public void setTimeTaken(int timeTaken) {
+        this.timeTaken = timeTaken;
+    }
+
     public Date getTestDate() {
         return testDate;
     }
 
     public void setTestDate(Date testDate) {
         this.testDate = testDate;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
     }
 }
